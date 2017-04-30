@@ -5,7 +5,7 @@
 <jsp:include page="/pages/plugins/front/front_header.jsp"/>
 <script type="text/javascript" src="js/front/center/member/member_edit.js"></script>
 <%!
-	public static final String MEMBER_EDIT_URL = "" ;
+	public static final String MEMBER_EDIT_URL = "pages/front/center/member/MemberCenterActionFront!editBase.action" ;
 %>
 <body class="back">
 	<div class="container contentback">
@@ -36,7 +36,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="name" name="name" class="form-control"
-											placeholder="请输入您的姓名" value="张三">
+											placeholder="请输入您的姓名" value="${memberBase.name}">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="nameMsg"></div>
@@ -47,7 +47,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="phone" name="phone" class="form-control"
-											placeholder="请输入您的联系电话" value="18238923892">
+											placeholder="请输入您的联系电话" value="${memberBase.phone}">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="phoneMsg"></div>
@@ -58,7 +58,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="email" name="email" class="form-control"
-											placeholder="请输入您的联系邮箱" value="nihao@mldn.cn">
+											placeholder="请输入您的联系邮箱" value="${memberBase.email}">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="emailMsg"></div>

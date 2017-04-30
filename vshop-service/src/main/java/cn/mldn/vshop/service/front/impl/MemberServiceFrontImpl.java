@@ -18,6 +18,18 @@ import cn.mldn.vshop.vo.MemberLogs;
 
 public class MemberServiceFrontImpl extends AbstractService implements IMemberServiceFront {
 	@Override
+	public Member getEditBasePre(String mid) throws Exception {
+		IMemberDAO memberDAO = Factory.getDAOInstance("member.dao") ;
+		return memberDAO.findById(mid);
+	}
+	
+	@Override
+	public boolean editBase(Member vo) throws Exception {
+		IMemberDAO memberDAO = Factory.getDAOInstance("member.dao") ;
+		return memberDAO.doUpdateBase(vo); 
+	}
+	
+	@Override
 	public boolean checkMid(String mid) throws Exception {
 		IMemberDAO memberDAO = Factory.getDAOInstance("member.dao") ;
 		return memberDAO.findById(mid) == null ;

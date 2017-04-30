@@ -8,6 +8,13 @@ import cn.mldn.vshop.vo.Member;
 
 public interface IMemberDAO extends IBaseDAO<String, Member> {
 	/**
+	 * 更新用户的基本信息，主要包括：姓名、电话、邮箱
+	 * @param vo 包含有用户的基本信息，除了要更新的字段内容外还要包括mid的信息
+	 * @return 更新成功返回true，否则返回false
+	 * @throws SQLException SQL问题
+	 */
+	public boolean doUpdateBase(Member vo) throws SQLException ;
+	/**
 	 * 进行用户最后一次登录日期的更新处理
 	 * @param mid 用户id
 	 * @param lastdate 用户最后一次登录日期

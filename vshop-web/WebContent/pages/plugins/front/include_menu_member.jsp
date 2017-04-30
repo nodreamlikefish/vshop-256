@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%!
 	public static final String GOODS_SEARCH_URL = "pages/front/goods/goods_list.jsp" ;
+	public static final String MEMBER_BASE_EDIT_URL = "pages/front/center/member/MemberCenterActionFront!eidtBasePre.action" ;
 %>
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
 	<div class="navbar-header">
@@ -18,7 +19,7 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"><span class="glyphicon glyphicon-globe"></span>&nbsp;个人中心<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="pages/front/center/member/member_edit.jsp">
+						<li><a href="<%=MEMBER_BASE_EDIT_URL%>">
 							<span class="glyphicon glyphicon-user"></span>&nbsp;个人资料</a></li>
 						<li><a href="pages/front/center/address/address_list.jsp">
 							<span class="glyphicon glyphicon-plane"></span>&nbsp;地址管理</a></li>
