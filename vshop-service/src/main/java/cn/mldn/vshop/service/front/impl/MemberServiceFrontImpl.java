@@ -17,9 +17,28 @@ import cn.mldn.vshop.vo.Member;
 import cn.mldn.vshop.vo.MemberLogs;
 
 public class MemberServiceFrontImpl extends AbstractService implements IMemberServiceFront {
+	private IMemberDAO memberDAO = Factory.getDAOInstance("member.dao") ;
+	@Override
+	public boolean editPassword(String mid, String oldpassword,
+			String newpassword) throws Exception {
+		if(this.memberDAO.findLogin(mid, oldpassword) != null) {	// 原始密码有效
+			return this.memberDAO.doUpdatePassword(mid, newpassword) ;
+		}  
+		return false;
+	}
+	
+	@Override
+	public Member getEditBasePre(String mid) throws Exception {
+		return memberDAO.findById(mid);
+	}
+	
+	@Override
+	public boolean editBase(Member vo) throws Exception {
+		return memberDAO.doUpdateBase(vo); 
+	}
+	
 	@Override
 	public boolean checkMid(String mid) throws Exception {
-		IMemberDAO memberDAO = Factory.getDAOInstance("member.dao") ;
 		return memberDAO.findById(mid) == null ;
 	}
 	
@@ -29,7 +48,6 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
 			if (rids == null || rids.size() == 0) {	// 没有角色不应该创建用户
 				return false ;
 			}
-			IMemberDAO memberDAO = Factory.getDAOInstance("member.dao") ;
 			if (memberDAO.doUpdate(vo)) { // 保存用户数据
 				IRoleDAO roleDAO = Factory.getDAOInstance("role.dao");
 				if (roleDAO.doRemoveMemberRole(vo.getMid())) {

@@ -13,6 +13,26 @@ import cn.mldn.vshop.vo.Member;
 
 public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 	@Override
+	public boolean doUpdatePassword(String mid, String password)
+			throws SQLException {
+		String sql = "UPDATE member SET password=? WHERE mid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, password);
+		super.pstmt.setString(2, mid);
+		return super.pstmt.executeUpdate() > 0 ;
+	}
+	
+	@Override
+	public boolean doUpdateBase(Member vo) throws SQLException {
+		String sql = "UPDATE member SET name=?,email=?,phone=? WHERE mid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, vo.getName());
+		super.pstmt.setString(2, vo.getEmail()); 
+		super.pstmt.setString(3, vo.getPhone());
+		super.pstmt.setString(4, vo.getMid()); 
+		return super.pstmt.executeUpdate() > 0 ;
+	}
+	@Override
 	public boolean doUpdateLastdate(String mid, Date lastdate)
 			throws SQLException {
 		String sql = "UPDATE member SET lastdate=? WHERE mid=?" ;

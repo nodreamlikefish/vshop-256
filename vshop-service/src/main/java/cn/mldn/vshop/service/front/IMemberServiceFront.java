@@ -8,6 +8,33 @@ import cn.mldn.vshop.vo.Member;
 
 public interface IMemberServiceFront {
 	/**
+	 * 进行用户密码的更新处理，本业务操作需要如下执行步骤：<br>
+	 * 1、首先要利用mid与oldpassword进行原始登录的验证，调用IMemberDAO.findLogin()方法；<br>
+	 * 2、如果findLogin()方法验证通过，则使用IMemberDAO.doUpdatePassword()方法更新密码信息。
+	 * @param mid 要更新的用户编号
+	 * @param oldpassword 原始密码
+	 * @param newpassword 新的密码
+	 * @return 更新成功返回true，否则返回false
+	 * @throws Exception SQL异常
+	 */
+	public boolean editPassword(String mid,String oldpassword,String newpassword) throws Exception ;
+	
+	/**
+	 * 进行数据更新前的信息查找，调用IMemberDAO.findById()方法
+	 * @param mid 要更新的用户编号
+	 * @return 用户信息以VO形式返回
+	 * @throws Exception SQL异常
+	 */
+	public Member getEditBasePre(String mid) throws Exception ;
+	/**
+	 * 进行用户基本数据的更新，调用IMemberDAO.doUpdateBase()方法
+	 * @param vo 包含有更新数据
+	 * @return 更新成功返回true
+	 * @throws Exception SQL异常
+	 */
+	public boolean editBase(Member vo) throws Exception ;
+	
+	/**
 	 * 进行用户数据的添加操作处理，添加时请注意如下问题：<br>
 	 * 1、必须保证当前的操作用户有指定的权限后才可以调用；<br>
 	 * 2、如果当前用户具备有指定的权限，那么此时就进行新增加的用户名称的存在判断<br>
