@@ -1,11 +1,40 @@
 package cn.mldn.vshop.util.action;
 
 import java.io.IOException;
+import java.util.Set;
 
 import cn.mldn.util.action.ActionMessageUtil;
 import cn.mldn.util.web.ServletObjectUtil;
 
 public abstract class AbstractBaseAction {
+	/**
+	 * 进行是否具备有指定角色的检测，所有的角色保存在了allRoles这个session范围内
+	 * @param role 角色标记
+	 * @return 如果具备有此角色返回true，否则返回false
+	 */
+	public boolean isRole(String role) {
+		Set<String> allRoles = (Set<String>) ServletObjectUtil.getSession().getAttribute("allRoles") ;
+		return allRoles.contains(role) ;
+	}
+	/**
+	 * 进行是否具备有指定权限的检测处理
+	 * @param action 权限标记
+	 * @return 具备权限返回true
+	 */
+	public boolean isAction(String action) {
+		Set<String> allActions = (Set<String>) ServletObjectUtil.getSession().getAttribute("allActions") ;
+		return allActions.contains(action) ;
+	}
+	/**
+	 * 进行角色与权限的双重认证，调用isRole()与isAction()两个方法
+	 * @param role 角色标记
+	 * @param action 权限标记
+	 * @return 同时具备有角色和权限返回true
+	 */
+	public boolean isRoleAndAction(String role,String action) {
+		return this.isRole(role) && this.isAction(action) ;
+	}
+	
 	/**
 	 * 根据当前登录的session取得该用户的编号信息
 	 * @return 用户编号，如果没有登录过返回null
