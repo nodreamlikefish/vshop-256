@@ -1,5 +1,6 @@
 package cn.mldn.vshop.action.front;
 
+import cn.mldn.util.enctype.PasswordUtil;
 import cn.mldn.util.factory.Factory;
 import cn.mldn.util.web.ModelAndView;
 import cn.mldn.vshop.service.front.IMemberServiceFront;
@@ -10,6 +11,28 @@ public class MemberCenterActionFront extends AbstractBaseAction {
 	public static final String BASE_INFO = "用户信息" ;
 	
 	private IMemberServiceFront memberService = Factory.getServiceInstance("member.service.front") ;
+	/**
+	 * 进行用户登录密码的修改处理，要根据session取得当前用户的编号数据
+	 * @param oldpassword 原始密码
+	 * @param newpassword 新的密码
+	 * @return 修改成功后提示路径（forward.jsp），而后由提示路径进行跳转
+	 */
+	public String editPasssword(String oldpassword,String newpassword) {
+		oldpassword = PasswordUtil.getPassword(oldpassword) ;	// 必须对密码进行加密处理
+		newpassword = PasswordUtil.getPassword(newpassword) ;	// 必须对密码进行加密处理
+		try {
+			if (this.memberService.editPassword(super.getMid(), oldpassword, newpassword)) {
+				super.setUrlAndMsg("logout.action","member.password.edit.success");
+			} else {
+				super.setUrlAndMsg("logout.action","member.password.edit.failure");
+			}
+		} catch (Exception e) {
+			super.setUrlAndMsg("logout.action","member.password.edit.failure");
+			e.printStackTrace();
+		}
+		return super.getUrl("forward.front.page") ;
+	}
+	
 	/**
 	 * 信息修改操作，修改操作之后需要将修改信息提示给用户，所以一定要找到forward.jsp
 	 * @param 所有的提交自动转换为VO类对象

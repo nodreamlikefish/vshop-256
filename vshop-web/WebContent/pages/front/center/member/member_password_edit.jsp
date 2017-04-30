@@ -5,7 +5,7 @@
 <jsp:include page="/pages/plugins/front/front_header.jsp"/>
 <script type="text/javascript" src="js/front/center/member/member_password_edit.js"></script>
 <%!
-	public static final String MEMBER_EDIT_PASSWORD_URL = "" ;
+	public static final String MEMBER_EDIT_PASSWORD_URL = "pages/front/center/member/MemberCenterActionFront!editPasssword.action" ;
 %>
 <body class="back">
 	<div class="container contentback">

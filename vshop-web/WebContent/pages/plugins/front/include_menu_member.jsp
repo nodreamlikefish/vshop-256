@@ -5,6 +5,7 @@
 <%!
 	public static final String GOODS_SEARCH_URL = "pages/front/goods/goods_list.jsp" ;
 	public static final String MEMBER_BASE_EDIT_URL = "pages/front/center/member/MemberCenterActionFront!eidtBasePre.action" ;
+	public static final String LOGOUT_URL = "MemberLoginActionFront!logout.action" ;
 %>
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
 	<div class="navbar-header">
@@ -53,7 +54,7 @@
 					<li><a href="pages/back/index.jsp"><i class="glyphicon glyphicon-home"></i>&nbsp;管理中心</a></li>
 				</c:if>
 				<li class="divider"></li>
-				<li><a href="MemberLoginActionFront!logout.action"><i class="glyphicon glyphicon-off"></i>&nbsp;登录注销</a></li>
+				<li><a href="<%=LOGOUT_URL%>"><i class="glyphicon glyphicon-off"></i>&nbsp;登录注销</a></li>
 			</ul></li>
 		<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 	</ul>
