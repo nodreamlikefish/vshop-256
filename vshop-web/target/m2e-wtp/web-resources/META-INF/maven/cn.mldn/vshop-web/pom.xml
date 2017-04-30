@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>cn.mldn</groupId> 
+		<groupId>cn.mldn</groupId>
 		<artifactId>vshop</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -13,6 +13,11 @@
 	<name>vshop-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -34,7 +39,7 @@
 			<groupId>cn.mldn</groupId>
 			<artifactId>vshop-mvc</artifactId>
 		</dependency>
-		<dependency> 
+		<dependency>
 			<groupId>cn.mldn</groupId>
 			<artifactId>vshop-service</artifactId>
 		</dependency>

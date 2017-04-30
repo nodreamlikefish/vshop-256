@@ -58,11 +58,10 @@
 									<label class="col-md-3 control-label" for="pid">省份：</label>
 									<div class="col-md-5">
 										<select id="pid" name="pid" class="form-control">
-											<option value="1">北京</option>
-											<option value="2">天津</option>
-											<option value="3">上海</option>
-											<option value="4" selected>山东</option>
-											<option value="5">辽宁</option>
+											<option value="">====== 请选择所在省份 ======</option>
+											<c:forEach items="${allProvinces}" var="province">
+												<option value="${province.pid}">${province.title}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -73,9 +72,7 @@
 									<label class="col-md-3 control-label" for="cid">城市：</label>
 									<div class="col-md-5">
 										<select id="cid" name="cid" class="form-control">
-											<option value="11">济南</option>
-											<option value="12">青岛</option>
-											<option value="13">潍坊</option>
+											<option value="">====== 请选择所在城市 ======</option>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->

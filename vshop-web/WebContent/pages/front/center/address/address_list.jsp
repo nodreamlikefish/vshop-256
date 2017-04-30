@@ -3,6 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/pages/plugins/front/front_header.jsp"/>
+<%!
+	public static final String ADDRESS_ADD_URL = "pages/front/center/address/MemberAddressActionFront!addPre.action" ;
+%>
 <script type="text/javascript" src="js/front/center/address/address_list.js"></script>
 <body>
 	<div class="container">
@@ -77,7 +80,7 @@
 						</table>
 						<div class="text-right">
 							<button class="btn btn-danger" id="defBtn">修改默认地址</button>
-							<a href="pages/front/center/address/address_add.jsp" class="btn btn-warning">增加地址</a>
+							<a href="<%=ADDRESS_ADD_URL%>" class="btn btn-warning">增加地址</a>
 						</div>
 					</div>
 					<div class="panel-footer">

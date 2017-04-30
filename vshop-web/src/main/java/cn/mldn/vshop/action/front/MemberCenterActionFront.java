@@ -41,7 +41,7 @@ public class MemberCenterActionFront extends AbstractBaseAction {
 	
 	/**
 	 * 信息修改操作，修改操作之后需要将修改信息提示给用户，所以一定要找到forward.jsp
-	 * @param 所有的提交自动转换为VO类对象
+	 * @param vo 所有的提交自动转换为VO类对象
 	 * @return 更改后跳转路径信息
 	 */
 	public String editBase(Member vo) {

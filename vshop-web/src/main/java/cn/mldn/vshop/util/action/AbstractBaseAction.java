@@ -56,6 +56,7 @@ public abstract class AbstractBaseAction {
 	 * 通过Request属性范围设置msg与url两个参数的内容
 	 * @param urlKey url参数的key
 	 * @param msgKey msg参数的key
+	 * @param param 进行消息资源占位符设置
 	 */
 	public void setUrlAndMsg(String urlKey,String msgKey,Object ...param ) {
 		ServletObjectUtil.getRequest().setAttribute("url", this.getUrl(urlKey));
@@ -80,6 +81,8 @@ public abstract class AbstractBaseAction {
 	 */
 	public void print(Object value) {
 		try {
+			ServletObjectUtil.getRequest().setCharacterEncoding("UTF-8");
+			ServletObjectUtil.getResponse().setCharacterEncoding("UTF-8");
 			ServletObjectUtil.getResponse().getWriter().print(value);
 		} catch (IOException e) {
 			e.printStackTrace();
