@@ -1,4 +1,14 @@
 $(function() {
+	$(pid).on("change",function(){
+		$.post("pages/front/center/address/CityActionFront!list.action",{pid:this.value},
+				function(data) {
+			$("#cid option:gt(1)").empty() ;
+			for (x = 0 ; x < data.allCitys.length ; x ++) {
+				$(cid).append("<option value='"+data.allCitys[x].cid+"'>"+data.allCitys[x].title+"</option>") ;
+			}
+		},"json") ;
+	}) ;
+	
 	$("#myform").validate({
 		debug : true, // 取消表单的提交操作
 		submitHandler : function(form) {

@@ -7,7 +7,7 @@
 		<groupId>cn.mldn</groupId>
 		<artifactId>vshop</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+	</parent> 
 	<artifactId>vshop-service</artifactId>
 	<name>vshop-service</name>
 	<url>http://maven.apache.org</url>

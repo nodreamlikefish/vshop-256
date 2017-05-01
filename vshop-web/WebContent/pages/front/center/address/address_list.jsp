@@ -3,6 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/pages/plugins/front/front_header.jsp"/>
+<%!
+	public static final String ADDRESS_ADD_URL = "pages/front/center/address/MemberAddressActionFront!addPre.action" ;
+%>
 <script type="text/javascript" src="js/front/center/address/address_list.js"></script>
 <body>
 	<div class="container">
@@ -28,7 +31,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">
-										<input type="checkbox" id="selectAll">
+										<span class="text-wanring">默认</span>
 									</th>
 									<th class="text-center"><strong>收件人</strong></th>
 									<th class="text-center"><strong>联系电话</strong></th>
@@ -39,36 +42,45 @@
 							<tbody>
 								<tr>
 									<td class="text-center">
-										<input type="checkbox" id="aid" name="aid" value="zhangsan">
+										<input type="radio" id="aid" name="aid" value="zhangsan" checked>
 									</td>
 									<td class="text-center">李先生</td>
 									<td class="text-center">13934720223</td>
 									<td class="text-center">北京市朝阳区来广营马泉营</td>
-									<td class="text-center"><a id="editBtn-1" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a></td>
+									<td class="text-center">
+										<a id="editBtn-1" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a>
+										<a id="deleteBtn-1" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
+									</td>
 								</tr>
 								<tr>
 									<td class="text-center">
-										<input type="checkbox" id="aid" name="aid" value="zhangsan">
+										<input type="radio" id="aid" name="aid" value="zhangsan">
 									</td>
 									<td class="text-center">李先生</td>
 									<td class="text-center">13934720223</td>
 									<td class="text-center">北京市朝阳区来广营马泉营</td>
-									<td class="text-center"><a id="editBtn-2" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a></td>
+									<td class="text-center">
+										<a id="editBtn-2" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a>
+										<a id="deleteBtn-2" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
+									</td>
 								</tr>
 								<tr>
 									<td class="text-center">
-										<input type="checkbox" id="aid" name="aid" value="zhangsan">
+										<input type="radio" id="aid" name="aid" value="zhangsan">
 									</td>
 									<td class="text-center">李先生</td>
 									<td class="text-center">13934720223</td>
 									<td class="text-center">北京市朝阳区来广营马泉营</td>
-									<td class="text-center"><a id="editBtn-3" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a></td>
+									<td class="text-center">
+										<a id="editBtn-3" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a>
+										<a id="deleteBtn-3" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="text-right">
-							<button class="btn btn-danger" id="delBtn">删除地址</button>
-							<a href="pages/front/center/address/address_add.jsp" class="btn btn-primary">增加新地址</a>
+							<button class="btn btn-danger" id="defBtn">修改默认地址</button>
+							<a href="<%=ADDRESS_ADD_URL%>" class="btn btn-warning">增加地址</a>
 						</div>
 					</div>
 					<div class="panel-footer">
