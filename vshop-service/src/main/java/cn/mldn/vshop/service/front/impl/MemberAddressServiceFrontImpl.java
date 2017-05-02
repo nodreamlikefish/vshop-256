@@ -1,6 +1,7 @@
 package cn.mldn.vshop.service.front.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import cn.mldn.util.factory.Factory;
@@ -13,6 +14,13 @@ import cn.mldn.vshop.vo.Address;
 public class MemberAddressServiceFrontImpl extends AbstractService
 		implements
 			IMemberAddressServiceFront {
+	
+	@Override
+	public List<Address> listByMember(String mid) throws Exception {
+		IAddressDAO addressDAO = Factory.getDAOInstance("address.dao") ;
+		return addressDAO.findAllByMember(mid);
+	}
+	
 	@Override
 	public Map<String, Object> getAddPre() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();

@@ -2,6 +2,7 @@ package cn.mldn.vshop.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -10,6 +11,27 @@ import cn.mldn.vshop.dao.IAddressDAO;
 import cn.mldn.vshop.vo.Address;
 
 public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
+	@Override
+	public List<Address> findAllByMember(String mid) throws SQLException {
+		List<Address> all = new ArrayList<Address>() ;
+		String sql = "SELECT adid,mid,pid,cid,addr,receiver,phone,deflag FROM address WHERE mid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, mid);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			Address vo = new Address() ;
+			vo.setAdid(rs.getInt(1));
+			vo.setMid(rs.getString(2));
+			vo.setPid(rs.getInt(3));
+			vo.setCid(rs.getInt(4));
+			vo.setAddr(rs.getString(5));
+			vo.setReceiver(rs.getString(6));
+			vo.setPhone(rs.getString(7));
+			vo.setDeflag(rs.getInt(8));
+			all.add(vo) ;
+		}
+		return all ;
+	}
 	@Override
 	public Integer getCountByMember(String mid) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM address WHERE mid=?" ;
