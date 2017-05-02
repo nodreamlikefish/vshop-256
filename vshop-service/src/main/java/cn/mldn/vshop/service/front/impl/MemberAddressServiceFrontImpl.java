@@ -6,6 +6,7 @@ import java.util.Map;
 
 import cn.mldn.util.factory.Factory;
 import cn.mldn.vshop.dao.IAddressDAO;
+import cn.mldn.vshop.dao.ICityDAO;
 import cn.mldn.vshop.dao.IProvinceDAO;
 import cn.mldn.vshop.service.abs.AbstractService;
 import cn.mldn.vshop.service.front.IMemberAddressServiceFront;
@@ -14,6 +15,26 @@ import cn.mldn.vshop.vo.Address;
 public class MemberAddressServiceFrontImpl extends AbstractService
 		implements
 			IMemberAddressServiceFront {
+	@Override
+	public Map<String, Object> getEditPre(String mid,int adid) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		IAddressDAO addressDAO = Factory.getDAOInstance("address.dao") ;
+		Address vo = addressDAO.findByIdAndMemeber(mid, adid) ;
+		if (vo != null) {
+			IProvinceDAO provinceDAO = Factory.getDAOInstance("province.dao");
+			map.put("allProvinces", provinceDAO.findAll()) ;
+			ICityDAO cityDAO = Factory.getDAOInstance("city.dao") ;
+			map.put("allCitys", cityDAO.findAllByProvince(vo.getPid())) ;
+		}
+		map.put("address",vo) ;
+		return map ;
+	}
+	@Override
+	public boolean edit(Address vo) throws Exception {
+		IAddressDAO addressDAO = Factory.getDAOInstance("address.dao") ;
+		return addressDAO.doUpdateByMember(vo); 
+	}
+	
 	@Override
 	public boolean editDeflag(String mid, int adid) throws Exception {
 		IAddressDAO addressDAO = Factory.getDAOInstance("address.dao") ;

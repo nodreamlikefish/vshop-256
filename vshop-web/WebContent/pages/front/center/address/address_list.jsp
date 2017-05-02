@@ -49,7 +49,7 @@
 									<td class="text-center">${address.phone}</td>
 									<td class="text-center">${address.addr}</td>
 									<td class="text-center">
-										<a id="editBtn-${address.adid}" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a>
+										<a id="editBtn-${address.adid}" href="pages/front/center/address/MemberAddressActionFront!editPre.action?adid=${address.adid}" class="btn btn-primary btn-xs">编辑</a>
 										<a id="deleteBtn-${address.adid}" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
 									</td>
 								</tr> 

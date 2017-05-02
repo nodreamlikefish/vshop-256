@@ -7,6 +7,28 @@ import cn.mldn.vshop.vo.Address;
 
 public interface IMemberAddressServiceFront {
 	/**
+	 * 进行地址修改前的数据查询操作，要执行如下的步骤：<br>
+	 * 1、使用IAddressDAO.findByIdAndMember(String mid,Integer adid)方法查询出一个地址的详细内容；<br>
+	 * 2、使用IProvinceDAO.findAll()方法，查询出所有的省份信息（表单回填）；<br>
+	 * 3、使用ICityDAO.findByProvince()方法，根据指定的省份编号查询出该省份中的所有城市信息；<br>
+	 * @param mid 用户编号
+	 * @param adid 地址编号
+	 * @return 返回的集合包括有如下内容：<br>
+	 * 1、key = address、value = Address的VO对象；<br>
+	 * 2、key = allProvinces、value = 所有的省份数据；<br>
+	 * 3、key = allCitys、value = 指定省份的所有城市数据；<br>
+	 * @throws Exception SQL异常
+	 */
+	public Map<String,Object> getEditPre(String mid,int adid) throws Exception ;
+	/**
+	 * 进行某一个用户的地址信息的变更处理，调用IAddressDAO.doUpdateByMember()方法
+	 * @param vo 包含有地址信息以及用户编号
+	 * @return 更新成功返回true，否则返回false
+	 * @throws Exception SQL异常
+	 */
+	public boolean edit(Address vo) throws Exception ;
+	
+	/**
 	 * 修改某一个地址的默认处理状态，该业务执行如下操作：<br>
 	 * 1、调用IAddressDAO.doUpdateDeflag(String mid,Integer deflag)，取消掉所有的默认状态<br>
 	 * 2、调用IAddressDAO.doUpdateDeflag(String mid,Integer adid,Integer deflag)设置一个默认的地址项<br>
