@@ -6,7 +6,7 @@
 <jsp:include page="/pages/plugins/back/back_header.jsp"/>
 <script type="text/javascript" src="js/back/admin/goods/goods_add.js"></script>
 <%!
-	public static final String GOODS_ADD_URL = "" ;
+	public static final String GOODS_ADD_URL = "pages/back/admin/goods/GoodsActionBack!add.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">

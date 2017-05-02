@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,6 +34,7 @@ public class FileUploadTools {
 			factory.setRepository(new File(tempDir)); // 设置临时文件保存目录
 		}
 		ServletFileUpload upload = new ServletFileUpload(factory); // 创建处理工具
+		upload.setHeaderEncoding("UTF-8");	// 设置编码类型
 		if (maxSize > 0) {						// 如果给的上传大小限制大于0，则使用新的设置
 			this.maxSize = maxSize;
 		}
@@ -50,7 +52,13 @@ public class FileUploadTools {
 			FileItem item = iter.next(); 		// 取出每一个上传的文件
 			if (item.isFormField()) { 			// 判断是否是普通的文本参数
 				String name = item.getFieldName(); // 取得表单的名字
-				String value = item.getString(); // 取得表单的内容
+				String value = null ;
+				try {
+					value = item.getString("UTF-8");	// 要按照UTF-8编码
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // 取得表单的内容
 				List<String> temp = null; 		// 保存内容
 				if (this.params.containsKey(name)) { // 判断内容是否已经存放
 					temp = this.params.get(name); // 如果存在则取出
