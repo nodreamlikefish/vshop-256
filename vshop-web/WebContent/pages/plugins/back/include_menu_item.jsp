@@ -42,7 +42,7 @@
 							class="fa fa-circle-o"></i> 商品分类</a></li>
 					</c:if>
 					<c:if test="${fn:contains(allActions,'goods:list') }">
-						<li><a href="pages/back/admin/goods/goods_list.jsp"><i
+						<li><a href="pages/back/admin/goods/GoodsActionBack!list.action"><i
 							class="fa fa-circle-o"></i> 商品列表</a></li>
 					</c:if>
 					<c:if test="${fn:contains(allActions,'goods:add') }">

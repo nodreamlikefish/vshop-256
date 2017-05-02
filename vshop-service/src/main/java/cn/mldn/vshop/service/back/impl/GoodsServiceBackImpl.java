@@ -15,6 +15,21 @@ public class GoodsServiceBackImpl extends AbstractService
 		implements
 			IGoodsServiceBack {
 	@Override
+	public Map<String, Object> list(int currentPage, int lineSize,
+			String column, String keyWord) throws Exception {
+		Map<String,Object> map = new HashMap<String,Object>() ;
+		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+		if (column == null || keyWord == null || "".equals(column) || "".equals(keyWord)) {
+			map.put("allGoodss", goodsDAO.findAllSplit(currentPage, lineSize)) ;
+			map.put("allRecorders",goodsDAO.getAllCount()) ;
+		}  else {
+			map.put("allGoodss", goodsDAO.findAllSplit(currentPage, lineSize,column,keyWord)) ;
+			map.put("allRecorders",goodsDAO.getAllCount(column,keyWord)) ;
+		}
+		return map;
+	}
+	
+	@Override
 	public boolean add(Goods vo) throws Exception {
 		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
 		vo.setPubdate(new Date());// 商品发布日期为今天
