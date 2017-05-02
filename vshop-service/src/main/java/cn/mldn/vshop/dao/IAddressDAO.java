@@ -8,6 +8,22 @@ import cn.mldn.vshop.vo.Address;
 
 public interface IAddressDAO extends IBaseDAO<Integer, Address> {
 	/**
+	 * 根据指定的用户编号和地址编号取得要修改的地址数据
+	 * @param mid 用户ID
+	 * @param adid 地址ID
+	 * @return 地址数据以VO形式返回
+	 * @throws SQLException SQL异常
+	 */
+	public Address findByIdAndMemeber(String mid,Integer adid) throws SQLException ; 
+	/**
+	 * 根据指定的用户ID、adid进行地址信息的变更
+	 * @param vo 包含有要修改的数据
+	 * @return 修改成功返回true，否则返回false
+	 * @throws SQLException SQL异常
+	 */
+	public boolean doUpdateByMember(Address vo) throws SQLException ;
+	
+	/**
 	 * 进行某一个用户的deflag的字段的内容设置
 	 * @param mid 用户编号
 	 * @param adid 要设置默认地址的地址编号
