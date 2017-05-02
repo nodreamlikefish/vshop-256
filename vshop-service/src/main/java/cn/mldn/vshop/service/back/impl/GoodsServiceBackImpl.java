@@ -7,6 +7,7 @@ import java.util.Map;
 import cn.mldn.util.factory.Factory;
 import cn.mldn.vshop.dao.IGoodsDAO;
 import cn.mldn.vshop.dao.IItemDAO;
+import cn.mldn.vshop.dao.ISubitemDAO;
 import cn.mldn.vshop.service.abs.AbstractService;
 import cn.mldn.vshop.service.back.IGoodsServiceBack;
 import cn.mldn.vshop.vo.Goods;
@@ -14,6 +15,18 @@ import cn.mldn.vshop.vo.Goods;
 public class GoodsServiceBackImpl extends AbstractService
 		implements
 			IGoodsServiceBack {
+	@Override
+	public Map<String,Object> show(int gid) throws Exception {
+		Map<String,Object> map = new HashMap<String,Object>() ;
+		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+		IItemDAO itemDAO = Factory.getDAOInstance("item.dao") ;
+		ISubitemDAO subitemDAO = Factory.getDAOInstance("subitem.dao") ;
+		Goods goods = goodsDAO.findById(gid) ;
+		map.put("goods", goods) ;
+		map.put("item", itemDAO.findById(goods.getIid())) ;
+		map.put("subitem", subitemDAO.findById(goods.getSid())) ;
+		return map; 
+	}
 	@Override
 	public Map<String, Object> list(int currentPage, int lineSize,
 			String column, String keyWord) throws Exception {

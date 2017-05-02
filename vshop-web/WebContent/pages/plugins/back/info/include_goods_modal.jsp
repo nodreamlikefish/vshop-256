@@ -11,35 +11,33 @@
 				<table class="table table-hover table-condensed">
 					<tbody>
 						<tr>
-							<td class="text-center" rowspan="7" style="width:30%"><img src="upload/goods/goods.png"></td>
+							<td class="text-center" rowspan="7" style="width:30%"><img id="modal-photo" src="upload/goods/goods.png" style="width:200px;"></td>
 							<td class="text-center" style="width:20%"><strong>商品名称：</strong></td>
-							<td class="text-center" style="width:50%">Java开发实战经典</td>
+							<td id="modal-title" class="text-center" style="width:50%"></td>
 						</tr>
 						<tr>
 							<td class="text-center"><strong>所属类别：</strong></td>
-							<td class="text-center">图书音响</td>
+							<td id="modal-item" class="text-center"></td>
 						</tr>
 						<tr>
 							<td class="text-center"><strong>所属子类别：</strong></td>
-							<td class="text-center">计算机图书</td>
+							<td id="modal-subitem" class="text-center"></td>
 						</tr>
 						<tr>
 							<td class="text-center"><strong>商品价格：</strong></td>
-							<td class="text-center">79.8</td>
+							<td id="modal-price" class="text-center"></td>
 						</tr>
 						<tr>
 							<td class="text-center"><strong>发布管理员：</strong></td>
-							<td class="text-center">mldn</td>
+							<td id="modal-mid" class="text-center"></td>
 						</tr>
 						<tr>
 							<td class="text-center"><strong>发布日期：</strong></td>
-							<td class="text-center">2017-10-10</td>
+							<td id="modal-pubdate" class="text-center"></td>
 						</tr>
 						<tr>
 							<td class="text-center" colspan="3">
-								<pre class="pre-scrollable" style="height:100px;width:600px;">
-									<p>JAVA WEB编程：</p>本课程属于JavaScript高级编程技术，所以在学习此技术之前一定要先掌握JavaScript与WEB开发技术后才可以进行学习。 本课程主要讲解了AJAX技术产生的历史背景、XMLHttpRequest对象的作用、基本属性、操作函数，并且通过大量实例讲解AJAX技术在项目开发中的实际应用，并且结合XML实现异步数据处理。
-								</pre>
+								<pre id="modal-note" class="pre-scrollable" style="height:100px;width:600px;"></pre>
 							</td>
 						</tr>
 					</tbody>

@@ -41,8 +41,17 @@ public class ItemDAOImpl extends AbstractDAO implements IItemDAO {
 
 	@Override
 	public Item findById(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT iid,title FROM item WHERE iid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, id);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			Item vo = new Item() ;
+			vo.setIid(rs.getInt(1));
+			vo.setTitle(rs.getString(2));
+			return vo ;
+		}
+		return null ;
 	}
 
 	@Override

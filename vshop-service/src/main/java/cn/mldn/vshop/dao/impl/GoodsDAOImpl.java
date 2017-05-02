@@ -20,7 +20,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 		super.pstmt.setInt(2, vo.getSid());
 		super.pstmt.setString(3, vo.getMid());
 		super.pstmt.setDouble(4, vo.getPrice());
-		super.pstmt.setDate(5, new java.sql.Date(vo.getPubdate().getTime()));
+		super.pstmt.setTimestamp(5, new java.sql.Timestamp(vo.getPubdate().getTime()));
 		super.pstmt.setString(6, vo.getNote());
 		super.pstmt.setInt(7, vo.getDelflag());
 		super.pstmt.setString(8, vo.getPhoto());
@@ -48,7 +48,24 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
 	@Override
 	public Goods findById(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "SELECT gid,iid,sid,mid,price,pubdate,note,delflag,photo,title FROM goods WHERE delflag=0 AND gid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, id);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			Goods vo = new Goods() ;
+			vo.setGid(rs.getInt(1));
+			vo.setIid(rs.getInt(2));
+			vo.setSid(rs.getInt(3));
+			vo.setMid(rs.getString(4));
+			vo.setPrice(rs.getDouble(5));
+			vo.setPubdate(rs.getTimestamp(6));
+			vo.setNote(rs.getString(7));
+			vo.setDelflag(rs.getInt(8)); 
+			vo.setPhoto(rs.getString(9));
+			vo.setTitle(rs.getString(10));
+			return vo ;
+		}
 		return null;
 	}
 
