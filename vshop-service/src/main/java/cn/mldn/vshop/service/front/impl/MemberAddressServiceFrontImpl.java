@@ -16,6 +16,11 @@ public class MemberAddressServiceFrontImpl extends AbstractService
 		implements
 			IMemberAddressServiceFront {
 	@Override
+	public boolean delete(String mid, int adid) throws Exception {
+		IAddressDAO addressDAO = Factory.getDAOInstance("address.dao") ;
+		return addressDAO.doRemoveByIdAndMember(mid, adid); 
+	}
+	@Override
 	public Map<String, Object> getEditPre(String mid,int adid) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		IAddressDAO addressDAO = Factory.getDAOInstance("address.dao") ;

@@ -41,7 +41,7 @@
 							</thead>
 							<tbody>
 							<c:forEach items="${allAddresss}" var="address">
-								<tr>
+								<tr id="address-${address.adid}">
 									<td class="text-center">
 										<input type="radio" id="adid" name="adid" value="${address.adid}" ${address.deflag == 1 ? "checked" : ""}>
 									</td>
@@ -50,7 +50,7 @@
 									<td class="text-center">${address.addr}</td>
 									<td class="text-center">
 										<a id="editBtn-${address.adid}" href="pages/front/center/address/MemberAddressActionFront!editPre.action?adid=${address.adid}" class="btn btn-primary btn-xs">编辑</a>
-										<a id="deleteBtn-${address.adid}" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
+										<button id="deleteBtn-${address.adid}" class="btn btn-danger btn-xs">删除</button>
 									</td>
 								</tr> 
 							</c:forEach>
