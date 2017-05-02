@@ -32,7 +32,7 @@
 									</td>
 									<td class="text-center">
 										<button class="btn btn-primary" id="updateBtn-${item.iid}"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>
-										<a class="btn btn-warning" href="pages/back/admin/item/subitem_list.jsp"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;管理子栏目</a>
+										<a class="btn btn-warning" href="pages/back/admin/item/SubitemActionBack!list.action?iid=${item.iid }"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;管理子栏目</a>
 									</td>
 								</tr>
 							</c:forEach>

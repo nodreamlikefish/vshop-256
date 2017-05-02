@@ -25,22 +25,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center">
-									<input type="text" id="title-1" name="title-1" class="form-control input-sm" value="幼儿图书">
-								</td>
-								<td class="text-center">
-									<button class="btn btn-primary" id="updateBtn-1-1"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-center">
-									<input type="text" id="title-2" name="title-2" class="form-control input-sm" value="计算机图书">
-								</td>
-								<td class="text-center">
-									<button class="btn btn-primary" id="updateBtn-1-2"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>
-								</td>
-							</tr>
+							<c:forEach items="${allSubitems}" var="subitem">
+								<tr>
+									<td class="text-center">
+										<input type="text" id="title-${subitem.sid}" name="title-${subitem.sid}" class="form-control input-sm" value="${subitem.title}">
+									</td>
+									<td class="text-center">
+										<button class="btn btn-primary" id="updateBtn-${subitem.iid}-${subitem.sid}"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
