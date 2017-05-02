@@ -12,6 +12,26 @@ import cn.mldn.vshop.vo.Address;
 
 public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
 	@Override
+	public boolean doUpdateDeflag(String mid, Integer deflag)
+			throws SQLException {
+		String sql = "UPDATE address SET deflag=? WHERE mid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, deflag);
+		super.pstmt.setString(2, mid);
+		return super.pstmt.executeUpdate() > 0 ;
+	}
+	@Override
+	public boolean doUpdateDeflag(String mid, Integer adid, Integer deflag)
+			throws SQLException {
+		String sql = "UPDATE address SET deflag=? WHERE mid=? AND adid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, deflag);
+		super.pstmt.setString(2, mid);
+		super.pstmt.setInt(3, adid); 
+		return super.pstmt.executeUpdate() > 0 ;
+	}
+	
+	@Override
 	public List<Address> findAllByMember(String mid) throws SQLException {
 		List<Address> all = new ArrayList<Address>() ;
 		String sql = "SELECT adid,mid,pid,cid,addr,receiver,phone,deflag FROM address WHERE mid=?" ;

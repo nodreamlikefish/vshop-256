@@ -8,6 +8,25 @@ import cn.mldn.vshop.vo.Address;
 
 public interface IAddressDAO extends IBaseDAO<Integer, Address> {
 	/**
+	 * 进行某一个用户的deflag的字段的内容设置
+	 * @param mid 用户编号
+	 * @param adid 要设置默认地址的地址编号
+	 * @param deflag 默认状态
+	 * @return 修改成功返回true，否则返回false
+	 * @throws SQLException SQL异常
+	 */
+	public boolean doUpdateDeflag(String mid,Integer adid,Integer deflag) throws SQLException ;
+	/**
+	 * 进行某一个用户的全部默认id的内容
+	 * @param mid 用户编号
+	 * @param deflag 默认状态
+	 * @return 修改成功返回true，否则返回false
+	 * @throws SQLException SQL异常
+	 */
+	public boolean doUpdateDeflag(String mid,Integer deflag) throws SQLException ;
+	
+	
+	/**
 	 * 进行用户地址信息的列出
 	 * @param mid 用户的ID
 	 * @return 以集合的形式返回，如果没有地址返回0

@@ -14,7 +14,14 @@ import cn.mldn.vshop.vo.Address;
 public class MemberAddressServiceFrontImpl extends AbstractService
 		implements
 			IMemberAddressServiceFront {
-	
+	@Override
+	public boolean editDeflag(String mid, int adid) throws Exception {
+		IAddressDAO addressDAO = Factory.getDAOInstance("address.dao") ;
+		if (addressDAO.doUpdateDeflag(mid, 0)) {	// 取消所有用户的默认状态
+			return addressDAO.doUpdateDeflag(mid, adid, 1) ;	// 设置一个地址编号的默认状态
+		}
+		return false;
+	}
 	@Override
 	public List<Address> listByMember(String mid) throws Exception {
 		IAddressDAO addressDAO = Factory.getDAOInstance("address.dao") ;

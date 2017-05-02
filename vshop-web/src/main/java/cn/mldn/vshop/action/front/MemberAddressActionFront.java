@@ -10,6 +10,19 @@ public class MemberAddressActionFront extends AbstractBaseAction{
 	private static final String ADDRESS_FLAG = "收件地址" ;
 	private IMemberAddressServiceFront memberService = Factory.getServiceInstance("memberaddress.service.front") ;
 	/**
+	 * 进行默认地址的编辑控制
+	 * @param adid 要设置为默认地址的地址编号
+	 */
+	public void editDeflag(int adid) {
+		try {
+			super.print(this.memberService.editDeflag(super.getMid(), adid));
+		} catch (Exception e) {
+			super.print(false); 
+			e.printStackTrace();
+		} 
+	}
+	
+	/**
 	 * 进行数据的列表显示，列表数据的属性名称为allAddresss
 	 * @return 跳转路径
 	 */

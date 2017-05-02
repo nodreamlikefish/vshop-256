@@ -7,6 +7,17 @@ import cn.mldn.vshop.vo.Address;
 
 public interface IMemberAddressServiceFront {
 	/**
+	 * 修改某一个地址的默认处理状态，该业务执行如下操作：<br>
+	 * 1、调用IAddressDAO.doUpdateDeflag(String mid,Integer deflag)，取消掉所有的默认状态<br>
+	 * 2、调用IAddressDAO.doUpdateDeflag(String mid,Integer adid,Integer deflag)设置一个默认的地址项<br>
+	 * @param mid 要修改的用户信息
+	 * @param adid 要设置的新的默认地址的地址编号
+	 * @return 设置成功返回true，否则返回false
+	 * @throws Exception SQL异常
+	 */
+	public boolean editDeflag(String mid,int adid) throws Exception ;
+	
+	/**
 	 * 进行用户全部地址信息的列出
 	 * @param mid 当前用户id
 	 * @return 全部地址数据
