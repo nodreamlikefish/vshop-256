@@ -6,7 +6,7 @@
 <jsp:include page="/pages/plugins/back/back_header.jsp"/>
 <script type="text/javascript" src="js/back/admin/goods/goods_add.js"></script>
 <%!
-	public static final String GOODS_ADD_URL = "" ;
+	public static final String GOODS_ADD_URL = "pages/back/admin/goods/GoodsActionBack!add.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -23,78 +23,75 @@
 					<form class="form-horizontal" action="<%=GOODS_ADD_URL%>" id="myform" method="post" enctype="multipart/form-data">
 						<fieldset>
 							<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-							<div class="form-group" id="goods.titleDiv">
+							<div class="form-group" id="titleDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="goods.title">商品名称：</label>
+								<label class="col-md-3 control-label" for="title">商品名称：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									<input type="text" id="goods.title" name="goods.title" class="form-control"
+									<input type="text" id="title" name="title" class="form-control"
 										placeholder="请输入商品名称">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="goods.titleMsg"></div>
+								<div class="col-md-4" id="titleMsg"></div>
 							</div>
-							<div class="form-group" id="goods.iidDiv">
+							<div class="form-group" id="iidDiv">
 								<!-- 定义表单提示文字 -->
 								<label class="col-md-3 control-label" for="goods.iid">所属类别：</label>
 								<div class="col-md-5">
-									<select id="goods.iid" name="goods.iid" class="form-control">
-										<option value="1">图书音响</option>
-										<option value="2">汽车用品</option>
-										<option value="3">电脑办公</option>
-										<option value="4">手机数码</option>
-										<option value="5">家居生活</option>
+									<select id="iid" name="iid" class="form-control">
+										<option value="">====== 请选择商品的所属分类 ======</option>
+										<c:forEach items="${allItems}" var="item">
+											<option value="${item.iid}">${item.title}</option>
+										</c:forEach>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="goods.iidMsg"></div>
+								<div class="col-md-4" id="iidMsg"></div>
 							</div>
-							<div class="form-group" id="goods.sidDiv">
+							<div class="form-group" id="sidDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="goods.sid">所属子类别：</label>
+								<label class="col-md-3 control-label" for="sid">所属子类别：</label>
 								<div class="col-md-5">
-									<select id="goods.sid" name="goods.sid" class="form-control">
-										<option value="1">幼儿图书</option>
-										<option value="2">计算机图书</option>
-										<option value="3">养生</option>
+									<select id="sid" name="sid" class="form-control">
+										<option value="">====== 请选择商品的所属子分类 ======</option>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="goods.sidMsg"></div>
+								<div class="col-md-4" id="sidMsg"></div>
 							</div>
-							<div class="form-group" id="goods.priceDiv">
+							<div class="form-group" id="priceDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="goods.price">商品价格：</label>
+								<label class="col-md-3 control-label" for="price">商品价格：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									<input type="text" id="goods.price" name="goods.price" class="form-control"
+									<input type="text" id="price" name="price" class="form-control"
 										placeholder="请输入商品价格">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="goods.priceMsg"></div>
+								<div class="col-md-4" id="priceMsg"></div>
 							</div>
-							<div class="form-group" id="goods.photoDiv">
+							<div class="form-group" id="photoDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="goods.photo">商品图片：</label>
+								<label class="col-md-3 control-label" for="photo">商品图片：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									<input type="file" id="goods.photo" name="goods.photo" class="form-control"
+									<input type="file" id="photo" name="photo" class="form-control"
 										placeholder="请选择商品宣传图片">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="goods.photoMsg"></div>
+								<div class="col-md-4" id="photoMsg"></div>
 							</div>
 							<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-							<div class="form-group" id="goods.noteDiv">
+							<div class="form-group" id="noteDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="goods.note">项目描述：</label>
+								<label class="col-md-3 control-label" for="note">项目描述：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									<textarea id="goods.note" name="goods.note"
+									<textarea id="note" name="note"
 										class="form-control" placeholder="请输入商品描述信息" rows="10"></textarea>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="project.noteMsg"></div>
+								<div class="col-md-4" id="noteMsg"></div>
 							</div> 
 							<div class="form-group">
 								<div class="col-md-5 col-md-offset-3">

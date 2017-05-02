@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import cn.mldn.util.action.ActionMessageUtil;
-@WebFilter("/pages/front/center/*") 
+@WebFilter(urlPatterns="/pages/front/center/*") 
 public class LoginFilter implements Filter {
 
 	@Override

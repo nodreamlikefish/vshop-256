@@ -5,8 +5,25 @@ import cn.mldn.util.web.ModelAndView;
 import cn.mldn.vshop.service.back.ISubitemServiceBack;
 import cn.mldn.vshop.util.action.AbstractBaseAction;
 import cn.mldn.vshop.vo.Subitem;
+import net.sf.json.JSONObject;
 
 public class SubitemActionBack extends AbstractBaseAction {
+	
+	public void listAjax(int iid) {
+		if (super.isRoleAndAction("goods", "goods:add")) {
+			ISubitemServiceBack itemService = Factory.getServiceInstance("subitem.service.back") ;
+			JSONObject obj = new JSONObject() ;
+			try {
+				obj.put("allSubitems", itemService.listByItem(iid))  ;
+				super.print(obj);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			super.print("{\"error\":\"unauth\"}");
+		}
+	}	
+	
 	public void edit(Subitem vo) {
 		if (super.isRoleAndAction("goods", "goods:item")) {
 			try {
