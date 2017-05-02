@@ -1,10 +1,19 @@
 package cn.mldn.vshop.service.front;
 
+import java.util.List;
 import java.util.Map;
 
 import cn.mldn.vshop.vo.Address;
 
 public interface IMemberAddressServiceFront {
+	/**
+	 * 进行用户全部地址信息的列出
+	 * @param mid 当前用户id
+	 * @return 全部地址数据
+	 * @throws Exception SQL异常
+	 */
+	public List<Address> listByMember(String mid) throws Exception ;  
+	
 	/**
 	 * 在用户进行地址信息添加前的数据查询处理：<br>
 	 * 1、需要查询出所有的省份信息

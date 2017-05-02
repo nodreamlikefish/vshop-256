@@ -10,6 +10,26 @@ public class MemberAddressActionFront extends AbstractBaseAction{
 	private static final String ADDRESS_FLAG = "收件地址" ;
 	private IMemberAddressServiceFront memberService = Factory.getServiceInstance("memberaddress.service.front") ;
 	/**
+	 * 进行数据的列表显示，列表数据的属性名称为allAddresss
+	 * @return 跳转路径
+	 */
+	public ModelAndView list() {
+		if (super.isRoleAndAction("address", "address:list")) {
+			ModelAndView mav = new ModelAndView(super.getUrl("member.address.list.page")) ;
+			try {
+				mav.add("allAddresss", this.memberService.listByMember(super.getMid()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return mav ;
+		} else {
+			super.setUrlAndMsg("index.page", "unaction.msg");
+			ModelAndView mav = new ModelAndView(super.getUrl("forward.front.page")) ;
+			return mav ; 
+		}
+	}
+	
+	/**
 	 * 实现用户地址数据的追加
 	 * @param vo 用户的地址信息
 	 * @return 返回到信息提示页

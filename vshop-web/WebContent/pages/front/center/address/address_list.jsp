@@ -40,42 +40,20 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${allAddresss}" var="address">
 								<tr>
 									<td class="text-center">
-										<input type="radio" id="aid" name="aid" value="zhangsan" checked>
+										<input type="radio" id="adid" name="adid" value="${address.adid}" ${address.deflag == 1 ? "checked" : ""}>
 									</td>
-									<td class="text-center">李先生</td>
-									<td class="text-center">13934720223</td>
-									<td class="text-center">北京市朝阳区来广营马泉营</td>
+									<td class="text-center">${address.receiver}</td>
+									<td class="text-center">${address.phone}</td>
+									<td class="text-center">${address.addr}</td>
 									<td class="text-center">
-										<a id="editBtn-1" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a>
-										<a id="deleteBtn-1" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
+										<a id="editBtn-${address.adid}" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a>
+										<a id="deleteBtn-${address.adid}" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
 									</td>
-								</tr>
-								<tr>
-									<td class="text-center">
-										<input type="radio" id="aid" name="aid" value="zhangsan">
-									</td>
-									<td class="text-center">李先生</td>
-									<td class="text-center">13934720223</td>
-									<td class="text-center">北京市朝阳区来广营马泉营</td>
-									<td class="text-center">
-										<a id="editBtn-2" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a>
-										<a id="deleteBtn-2" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td class="text-center">
-										<input type="radio" id="aid" name="aid" value="zhangsan">
-									</td>
-									<td class="text-center">李先生</td>
-									<td class="text-center">13934720223</td>
-									<td class="text-center">北京市朝阳区来广营马泉营</td>
-									<td class="text-center">
-										<a id="editBtn-3" href="pages/front/center/address/address_edit.jsp" class="btn btn-primary btn-xs">编辑</a>
-										<a id="deleteBtn-3" href="pages/front/center/address/address_list.jsp" class="btn btn-danger btn-xs">删除</a>
-									</td>
-								</tr>
+								</tr> 
+							</c:forEach>
 							</tbody>
 						</table>
 						<div class="text-right">
