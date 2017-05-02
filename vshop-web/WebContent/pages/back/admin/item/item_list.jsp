@@ -25,24 +25,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center">
-									<input type="text" id="title-1" name="title-1" class="form-control input-sm" value="图书音响">
-								</td>
-								<td class="text-center">
-									<button class="btn btn-primary" id="updateBtn-1"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>
-									<a class="btn btn-warning" href="pages/back/admin/item/subitem_list.jsp"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;管理子栏目</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-center">
-									<input type="text" id="title-2" name="title-2" class="form-control input-sm" value="居家生活">
-								</td>
-								<td class="text-center">
-									<button class="btn btn-primary" id="updateBtn-2"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>
-									<a class="btn btn-warning" href="pages/back/admin/item/subitem_list.jsp"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;管理子栏目</a>
-								</td>
-							</tr>
+							<c:forEach items="${allItems}" var="item">
+								<tr>
+									<td class="text-center">
+										<input type="text" id="title-${item.iid}" name="title-${item.iid}" class="form-control input-sm" value="${item.title}">
+									</td>
+									<td class="text-center">
+										<button class="btn btn-primary" id="updateBtn-${item.iid}"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>
+										<a class="btn btn-warning" href="pages/back/admin/item/subitem_list.jsp"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;管理子栏目</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

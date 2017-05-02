@@ -19,7 +19,7 @@
 			<div class="col-md-12 col-xs-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<strong><span class="glyphicon glyphicon-user"></span>&nbsp;用户登录</strong>
+						<strong><span class="glyphicon glyphicon-user"></span>&nbsp;信息提示</strong>
 					</div>
 					<div class="panel-body">
 							<script type="text/javascript">
