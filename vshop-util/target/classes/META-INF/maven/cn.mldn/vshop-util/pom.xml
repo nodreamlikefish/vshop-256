@@ -22,4 +22,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+		<finalName>vshop-util</finalName>
+	</build>
 </project>

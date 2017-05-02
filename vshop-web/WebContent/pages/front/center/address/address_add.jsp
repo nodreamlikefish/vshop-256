@@ -6,7 +6,7 @@
 <script type="text/javascript" src="js/front/center/address/address_add.js"></script>
 </head>
 <%!
-	public static final String ADDRESS_ADD_URL = "" ;
+	public static final String ADDRESS_ADD_URL = "pages/front/center/address/MemberAddressActionFront!add.action" ;
 %>
 <body class="back">
 	<div class="container contentback">
@@ -31,16 +31,16 @@
 						<form class="form-horizontal" action="<%=ADDRESS_ADD_URL%>" id="myform" method="post">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="nameDiv">
+								<div class="form-group" id="receiverDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="name">收件人：</label>
+									<label class="col-md-3 control-label" for="receiver">收件人：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="name" name="name" class="form-control"
+										<input type="text" id="receiver" name="receiver" class="form-control"
 											placeholder="请输入收件人姓名" value="">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="nameMsg"></div>
+									<div class="col-md-4" id="receiverMsg"></div>
 								</div>
 								<div class="form-group" id="phoneDiv">
 									<!-- 定义表单提示文字 -->
