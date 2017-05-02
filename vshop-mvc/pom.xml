@@ -29,4 +29,7 @@
 			<artifactId>commons-fileupload</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+		<finalName>vshop-mvc</finalName>
+	</build>
 </project>

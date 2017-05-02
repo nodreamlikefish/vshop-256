@@ -25,4 +25,7 @@
 			<artifactId>vshop-util</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+		<finalName>vshop-service</finalName>
+	</build>
 </project>
