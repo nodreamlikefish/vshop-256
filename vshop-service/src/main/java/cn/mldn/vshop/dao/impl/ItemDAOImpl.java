@@ -20,8 +20,11 @@ public class ItemDAOImpl extends AbstractDAO implements IItemDAO {
 
 	@Override
 	public boolean doUpdate(Item vo) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "UPDATE item SET title=? WHERE iid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, vo.getTitle());
+		super.pstmt.setInt(2, vo.getIid());
+		return super.pstmt.executeUpdate() > 0 ;
 	}
 
 	@Override

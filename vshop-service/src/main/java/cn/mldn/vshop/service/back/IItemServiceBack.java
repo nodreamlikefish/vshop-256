@@ -11,4 +11,11 @@ public interface IItemServiceBack {
 	 * @throws Exception SQL异常
 	 */
 	public List<Item> list() throws Exception ;
+	/**
+	 * 实现栏目信息名称的变更处理操作，调用IItemDAO.doUpdate()方法
+	 * @param vo 包含有修改数据的对象
+	 * @return 修改成功返回true
+	 * @throws Exception SQL异常
+	 */
+	public boolean edit(Item vo) throws Exception ;
 }
