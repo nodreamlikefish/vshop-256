@@ -38,7 +38,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<c:if test="${fn:contains(allActions,'goods:item') }">
-						<li><a href="pages/back/admin/item/item_list.jsp"><i
+						<li><a href="pages/back/admin/item/ItemActionBack!list.action"><i
 							class="fa fa-circle-o"></i> 商品分类</a></li>
 					</c:if>
 					<c:if test="${fn:contains(allActions,'goods:list') }">

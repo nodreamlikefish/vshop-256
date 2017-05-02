@@ -1,23 +1,16 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<jsp:include page="/pages/plugins/front/front_header.jsp"/>
-<script type="text/javascript" src="js/login.js"></script>
-<%!
-	public static final String LOGIN_URL = "MemberLoginActionFront!login.action" ;
-%>
-<body class="back">
-	<div class="container contentback">
-		<div id="headDiv" class="row">
-			<div class="col-md-12 col-xs-12">
-				<jsp:include page="/pages/plugins/front/include_menu_member.jsp" />
-			</div>
-		</div>
-		<div style="height: 60px;"></div> 
-		<div id="contentDiv" class="row">
-			<div class="col-md-12 col-xs-12">
-				<div class="panel panel-primary">
+<jsp:include page="/pages/plugins/back/back_header.jsp"/>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<!-- 导入头部标题栏内容 -->
+		<jsp:include page="/pages/plugins/back/include_title_head.jsp" />
+		<!-- 导入左边菜单项 -->
+		<jsp:include page="/pages/plugins/back/include_menu_item.jsp" />
+		<div class="content-wrapper text-left">
+			<div class="panel panel-primary">
 					<div class="panel-heading">
 						<strong><span class="glyphicon glyphicon-user"></span>&nbsp;信息提示</strong>
 					</div>
@@ -48,10 +41,12 @@
 	                    </div>
 					</div>
 				</div>
-			</div>
 		</div>
-		<div id="footDiv" class="row navbar-fixed-bottom">
-			<jsp:include page="/pages/plugins/front/include_foot.jsp" />
-		</div>
+		<!-- 导入公司尾部认证信息 -->
+		<jsp:include page="/pages/plugins/back/include_title_foot.jsp" />
+		<!-- 导入右边工具设置栏 -->
+		<jsp:include page="/pages/plugins/back/include_menu_sidebar.jsp" />
+		<div class="control-sidebar-bg"></div>
 	</div>
-<jsp:include page="/pages/plugins/front/front_footer.jsp"/>
+	<jsp:include page="/pages/plugins/back/include_javascript_foot.jsp" />
+<jsp:include page="/pages/plugins/back/back_footer.jsp"/>
