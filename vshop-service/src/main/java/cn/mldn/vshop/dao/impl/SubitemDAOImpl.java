@@ -7,24 +7,36 @@ import java.util.List;
 import java.util.Set;
 
 import cn.mldn.util.dao.abs.AbstractDAO;
-import cn.mldn.vshop.dao.IItemDAO;
-import cn.mldn.vshop.vo.Item;
+import cn.mldn.vshop.dao.ISubitemDAO;
+import cn.mldn.vshop.vo.Subitem;
 
-public class ItemDAOImpl extends AbstractDAO implements IItemDAO {
-
+public class SubitemDAOImpl extends AbstractDAO implements ISubitemDAO {
 	@Override
-	public boolean doCreate(Item vo) throws SQLException {
+	public List<Subitem> findAllByItem(Integer iid) throws SQLException {
+		List<Subitem> all = new ArrayList<Subitem>() ;
+		String sql = "SELECT sid,iid,title FROM subitem WHERE iid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, iid);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			Subitem vo = new Subitem() ;
+			vo.setSid(rs.getInt(1));
+			vo.setIid(rs.getInt(2));
+			vo.setTitle(rs.getString(3));
+			all.add(vo) ;
+		}
+		return all;
+	}
+	@Override
+	public boolean doCreate(Subitem vo) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean doUpdate(Item vo) throws SQLException {
-		String sql = "UPDATE item SET title=? WHERE iid=?" ;
-		super.pstmt = super.conn.prepareStatement(sql) ;
-		super.pstmt.setString(1, vo.getTitle());
-		super.pstmt.setInt(2, vo.getIid());
-		return super.pstmt.executeUpdate() > 0 ;
+	public boolean doUpdate(Subitem vo) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -40,35 +52,26 @@ public class ItemDAOImpl extends AbstractDAO implements IItemDAO {
 	}
 
 	@Override
-	public Item findById(Integer id) throws SQLException {
+	public Subitem findById(Integer id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Item> findAll() throws SQLException {
-		List<Item> all = new ArrayList<Item>() ;
-		String sql = "SELECT iid,title FROM item" ;
-		super.pstmt = super.conn.prepareStatement(sql) ;
-		ResultSet rs = super.pstmt.executeQuery() ;
-		while (rs.next()) {
-			Item vo = new Item() ;
-			vo.setIid(rs.getInt(1));
-			vo.setTitle(rs.getString(2));
-			all.add(vo) ;
-		}
-		return all;
+	public List<Subitem> findAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Item> findAllSplit(Integer currentPage, Integer lineSize)
+	public List<Subitem> findAllSplit(Integer currentPage, Integer lineSize)
 			throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Item> findAllSplit(Integer currentPage, Integer lineSize,
+	public List<Subitem> findAllSplit(Integer currentPage, Integer lineSize,
 			String column, String keyWord) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
@@ -86,5 +89,6 @@ public class ItemDAOImpl extends AbstractDAO implements IItemDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

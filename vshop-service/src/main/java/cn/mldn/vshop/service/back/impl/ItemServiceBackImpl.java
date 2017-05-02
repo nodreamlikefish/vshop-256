@@ -12,6 +12,11 @@ public class ItemServiceBackImpl extends AbstractService
 		implements
 			IItemServiceBack {
 	@Override
+	public boolean edit(Item vo) throws Exception {
+		IItemDAO itemDAO = Factory.getDAOInstance("item.dao");
+		return itemDAO.doUpdate(vo);
+	}
+	@Override
 	public List<Item> list() throws Exception {
 		IItemDAO itemDAO = Factory.getDAOInstance("item.dao");
 		return itemDAO.findAll();
