@@ -11,7 +11,11 @@ import cn.mldn.vshop.vo.Subitem;
 public class SubitemServiceBackImpl extends AbstractService
 		implements
 			ISubitemServiceBack {
-
+	@Override
+	public boolean edit(Subitem vo) throws Exception {
+		ISubitemDAO subitemDAO = Factory.getDAOInstance("subitem.dao");
+		return subitemDAO.doUpdate(vo);
+	}
 	@Override
 	public List<Subitem> listByItem(int iid) throws Exception {
 		ISubitemDAO subitemDAO = Factory.getDAOInstance("subitem.dao");
