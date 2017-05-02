@@ -35,8 +35,11 @@ public class SubitemDAOImpl extends AbstractDAO implements ISubitemDAO {
 
 	@Override
 	public boolean doUpdate(Subitem vo) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "UPDATE subitem SET title=? WHERE sid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, vo.getTitle());
+		super.pstmt.setInt(2, vo.getSid());
+		return super.pstmt.executeUpdate() > 0 ;
 	}
 
 	@Override

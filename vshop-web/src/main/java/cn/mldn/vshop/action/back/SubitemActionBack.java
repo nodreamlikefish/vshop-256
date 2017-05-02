@@ -4,20 +4,20 @@ import cn.mldn.util.factory.Factory;
 import cn.mldn.util.web.ModelAndView;
 import cn.mldn.vshop.service.back.ISubitemServiceBack;
 import cn.mldn.vshop.util.action.AbstractBaseAction;
-import cn.mldn.vshop.vo.Item;
+import cn.mldn.vshop.vo.Subitem;
 
 public class SubitemActionBack extends AbstractBaseAction {
-	public void edit(Item vo) {
-//		if (super.isRoleAndAction("goods", "goods:item")) {
-//			try {
-//				IItemServiceBack itemService = Factory.getServiceInstance("item.service.back") ;
-//				super.print(itemService.edit(vo)); 
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		} else {
-//			super.print(false);
-//		}
+	public void edit(Subitem vo) {
+		if (super.isRoleAndAction("goods", "goods:item")) {
+			try {
+				ISubitemServiceBack itemService = Factory.getServiceInstance("subitem.service.back") ;
+				super.print(itemService.edit(vo)); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			super.print(false);
+		}
 	}
 	
 	public ModelAndView list(int iid) {
