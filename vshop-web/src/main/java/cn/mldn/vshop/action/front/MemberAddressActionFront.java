@@ -13,6 +13,19 @@ public class MemberAddressActionFront extends AbstractBaseAction {
 	private IMemberAddressServiceFront memberService = Factory
 			.getServiceInstance("memberaddress.service.front");
 
+	public void delete(int adid) {
+		if (super.isRoleAndAction("address", "address:delete")) {
+			try {
+				super.print(this.memberService.delete(super.getMid(), adid));
+			} catch (Exception e) {
+				super.print(false); 
+				e.printStackTrace();
+			}
+		} else {
+			super.print(false);
+		}
+	}
+	
 	public String edit(Address vo) {
 		if (super.isRoleAndAction("address", "address:edit")) {
 			vo.setMid(super.getMid());

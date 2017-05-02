@@ -12,6 +12,16 @@ import cn.mldn.vshop.vo.Address;
 
 public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
 	@Override
+	public boolean doRemoveByIdAndMember(String mid, Integer adid)
+			throws SQLException {
+		String sql = "DELETE FROM address WHERE mid=? AND adid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, mid);
+		super.pstmt.setInt(2, adid);
+		return this.pstmt.executeUpdate() > 0 ;
+	}
+	
+	@Override
 	public Address findByIdAndMemeber(String mid, Integer adid)
 			throws SQLException {
 		String sql = "SELECT adid,mid,pid,cid,addr,receiver,phone,deflag FROM address WHERE mid=? AND adid=?";

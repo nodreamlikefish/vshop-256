@@ -6,6 +6,16 @@ import java.util.Map;
 import cn.mldn.vshop.vo.Address;
 
 public interface IMemberAddressServiceFront {
+	
+	/**
+	 * 进行地址的删除操作，调用IAddressDAO.doRemoveByIdAndMember()
+	 * @param mid 用户编号
+	 * @param adid 地址编号
+	 * @return 删除成功返回true
+	 * @throws Exception SQL
+	 */
+	public boolean delete(String mid,int adid) throws Exception ;
+	
 	/**
 	 * 进行地址修改前的数据查询操作，要执行如下的步骤：<br>
 	 * 1、使用IAddressDAO.findByIdAndMember(String mid,Integer adid)方法查询出一个地址的详细内容；<br>

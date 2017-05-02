@@ -1,4 +1,18 @@
 $(function() {
+	$("button[id^=deleteBtn]").each(function() {
+		$(this).on("click",function() {
+			adid = this.id.split("-")[1] ;
+			if (window.confirm("您确定要删除此地址信息吗？")) {
+				$.post("pages/front/center/address/MemberAddressActionFront!delete.action",{"adid":adid},function(data){
+					operateAlert(data.trim() == "true","配送地址删除成功！","配送地址删除失败！") ;
+					if (data.trim() == "true") {
+						$("#address-" + adid).remove() ;	// 删除当前行元素
+					}
+				},"text") ;
+			}
+		}) ;
+	})
+	
 	$("#selectAll").on("click",function(){
 		checkboxSelectAll('aid',this.checked) ;
 	}) ;

@@ -8,6 +8,15 @@ import cn.mldn.vshop.vo.Address;
 
 public interface IAddressDAO extends IBaseDAO<Integer, Address> {
 	/**
+	 * 根据用户id和地址编号进行地址信息删除
+	 * @param mid 用户ID
+	 * @param adid 地址ID
+	 * @return 删除成功返回true
+	 * @throws SQLException SQL异常
+	 */
+	public boolean doRemoveByIdAndMember(String mid,Integer adid) throws SQLException ;
+	
+	/**
 	 * 根据指定的用户编号和地址编号取得要修改的地址数据
 	 * @param mid 用户ID
 	 * @param adid 地址ID
