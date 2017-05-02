@@ -44,7 +44,7 @@
 								<td class="text-center">
 									<fmt:formatNumber value="${goods.price}"/>
 								</td>
-								<td class="text-center">${goods.pubdate}</td>
+								<td class="text-center"><fmt:formatDate value="${goods.pubdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 								<td class="text-center">
 									<a type="button" class="btn btn-info btn-xs" href="pages/back/admin/goods/goods_edit.jsp">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>

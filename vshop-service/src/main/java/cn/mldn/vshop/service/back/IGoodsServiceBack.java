@@ -6,6 +6,17 @@ import cn.mldn.vshop.vo.Goods;
 
 public interface IGoodsServiceBack {
 	/**
+	 * 实现单个商品的信息显示
+	 * @param gid 商品编号
+	 * @return 商品数据，包括如下内容：<br>
+	 * 1、key = item、value = 商品分类数据；<br>
+	 * 2、key = subitem、value = 商品子分类数据；<br>
+	 * 3、key = goods、value = 商品数据。
+	 * @throws Exception SQL
+	 */
+	public Map<String,Object> show(int gid) throws Exception ;
+	
+	/**
 	 * 进行信息列表显示，如果现在没有模糊查询的关键字或者列，则执行全部的数据查询
 	 * @param currentPage 当前页
 	 * @param lineSize 每页行

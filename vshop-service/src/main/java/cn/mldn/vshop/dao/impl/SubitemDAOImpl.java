@@ -56,7 +56,17 @@ public class SubitemDAOImpl extends AbstractDAO implements ISubitemDAO {
 
 	@Override
 	public Subitem findById(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "SELECT sid,iid,title FROM subitem WHERE sid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, id);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			Subitem vo = new Subitem() ;
+			vo.setSid(rs.getInt(1));
+			vo.setIid(rs.getInt(2));
+			vo.setTitle(rs.getString(3));
+			return vo ;
+		}
 		return null;
 	}
 
