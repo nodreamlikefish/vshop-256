@@ -7,6 +7,19 @@ import cn.mldn.vshop.service.front.IGoodsServiceFront;
 import cn.mldn.vshop.util.action.AbstractBaseAction;
 
 public class GoodsActionFront extends AbstractBaseAction {
+	
+	public ModelAndView search() {
+		ModelAndView mav = new ModelAndView(super.getUrl("goods.list.search.page")) ;
+		IGoodsServiceFront goodsService = Factory.getServiceInstance("goods.service.front") ;
+		try {
+			ActionSplitPageUtil aspu = new ActionSplitPageUtil("", "goods.list.search.action") ;
+			mav.add(goodsService.list(aspu.getCurrentPage(), 12, aspu.getKeyWord()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return mav ;
+	} 
+	
 	public ModelAndView list(int sid) {
 		ModelAndView mav = new ModelAndView(super.getUrl("goods.list.subitem.page")) ;
 		IGoodsServiceFront goodsService = Factory.getServiceInstance("goods.service.front") ;

@@ -13,6 +13,15 @@ public class GoodsServiceFrontImpl extends AbstractService
 		implements
 			IGoodsServiceFront { 
 	@Override
+	public Map<String, Object> list(int currentPage, int lineSize,
+			String keyWord) throws Exception {
+		Map<String,Object> map = new HashMap<String,Object>() ;
+		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+		map.put("allGoodss", goodsDAO.findAllSplit(currentPage, lineSize,"title",keyWord)) ;
+		map.put("allRecorders",goodsDAO.getAllCount("title",keyWord)) ;
+		return map;
+	}
+	@Override
 	public Map<String, Object> listBySubitem(int sid,int currentPage,int lineSize) throws Exception {
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;

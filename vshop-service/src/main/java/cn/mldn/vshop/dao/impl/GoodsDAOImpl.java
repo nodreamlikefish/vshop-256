@@ -176,6 +176,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 			vo.setNote(rs.getString(7));
 			vo.setDelflag(rs.getInt(8));
 			vo.setPhoto(rs.getString(9));
+			vo.setTitle(rs.getString(10));
 			all.add(vo) ;
 		}
 		return all;
