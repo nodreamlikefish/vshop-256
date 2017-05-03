@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%!
-	public static final String GOODS_SEARCH_URL = "pages/front/goods/goods_list.jsp" ;
+	public static final String GOODS_SEARCH_URL = "pages/front/goods/GoodsActionFront!search.action" ;
 	public static final String MEMBER_BASE_EDIT_URL = "pages/front/center/member/MemberCenterActionFront!eidtBasePre.action" ;
 	public static final String LOGOUT_URL = "MemberLoginActionFront!logout.action" ;
 %>
@@ -37,7 +37,7 @@
 	</ul> 
 	<form class="navbar-form navbar-left" action="<%=GOODS_SEARCH_URL%>" method="post">
 		<div class="form-group"> 
-			<input type="text" class="form-control input-xs" placeholder="请输入商品关键字..." style="width:600px;background: #F5F5F5;height:30px;">
+			<input type="text" name="kw" id="kw" value="${keyWord}" class="form-control input-xs" placeholder="请输入商品关键字..." style="width:600px;background: #F5F5F5;height:30px;">
 			<button class="btn btn-danger" style="height:30px;">搜索</button>
 		</div>
 	</form>

@@ -20,9 +20,6 @@
 					</div>
 					<div class="panel-body">
 						<div class="row">
-							
-						</div>
-						<div class="row">
 							<c:forEach items="${allGoodss}" var="goods">
 								<div class="col-md-3 text-center">
 									<p>

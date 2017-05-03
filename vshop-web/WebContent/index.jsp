@@ -20,7 +20,7 @@
 				<div class="row">
 					<%-- <jsp:include page="/pages/plugins/split_plugin_search_bar.jsp"/> --%>
 				</div>
-				<div class="row">
+				<div class="row" id="goodsDiv">
 					<div class="col-md-3 text-center">
 						<p>
 							<a href="pages/front/goods/goods_show.jsp">

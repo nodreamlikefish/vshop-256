@@ -1,4 +1,10 @@
 $(function() {
+	$(createData).on("click",function(){
+		$.post("pages/back/admin/item/ItemActionBack!listDetails.action",{},
+				function(data){
+			operateAlert(data.trim() == "true","栏目数据创建成功！","栏目数据创建失败！") ;
+		},"text") ;
+	}) ;
 	$("button[id*='updateBtn-']").each(function(){
 		var iid = this.id.split("-")[1];	// 分离出id信息
 		$(this).on("click",function(){

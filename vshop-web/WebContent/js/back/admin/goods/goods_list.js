@@ -1,9 +1,37 @@
 $(function(){
+	$(createData).on("click",function(){
+		$.post("pages/back/admin/goods/GoodsActionBack!listDetails.action",{},
+				function(data){
+			operateAlert(data.trim() == "true","商品数据创建成功！","商品数据创建失败！") ;
+		},"text") ;
+	}) ;
 	$("#selectAll").on("click",function(){
 		checkboxSelectAll('gid',this.checked) ;
 	}) ;
 	$("#rmBtn").on("click",function(){	// 绑定用户锁定操作
-		operateChecked("确定要删除这些商品吗？","goods.gid",'pages/back/admin/goods/GoodsActionBack!rm.action?p=p') ;
+		if (window.confirm("确定要删除这些商品信息吗？")) {
+			deleteGid = "" ;
+			gids = new Array() ;	// 建立一个数组
+			foot = 0 ;
+			$("#gid:checked").each(function(){
+				deleteGid = deleteGid + this.value + "," ;
+				gids[foot ++] = this.value ;
+			}) ;
+			if (deleteGid == "") {	// 没有要删除的信息
+				operateAlert(false,"xxx","您还未选择删除的商品信息") ;
+			} else {
+				$.post("pages/back/admin/goods/GoodsActionBack!delete.action",
+						{"gids":deleteGid},function(data){
+							if (data.trim() == "true") {
+								operateAlert(data.trim() == "true","商品信息删除成功！","商品信息删除失败！") ;
+								for (x = 0 ; x < gids.length ; x ++) {
+									$("#goods-" + gids[x]).remove() ;
+								}
+							}
+						},"text") ;
+			}
+			console.log(deleteGid) ;
+		}
 	}) ;
 	$("a[id*=showBtn-]").each(function(){
 		// 拆分id数据

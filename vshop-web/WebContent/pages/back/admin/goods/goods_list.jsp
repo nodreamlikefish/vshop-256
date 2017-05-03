@@ -33,7 +33,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${allGoodss}" var="goods">
-							<tr>
+							<tr id="goods-${goods.gid}">
 								<td class="text-center">
 									<input type="checkbox" id="gid" name="gid" value="${goods.gid}">
 								</td>
@@ -46,15 +46,16 @@
 								</td>
 								<td class="text-center"><fmt:formatDate value="${goods.pubdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 								<td class="text-center">
-									<a type="button" class="btn btn-info btn-xs" href="pages/back/admin/goods/goods_edit.jsp">
+									<a type="button" class="btn btn-info btn-xs" href="pages/back/admin/goods/GoodsActionBack!editPre.action?gid=${goods.gid}">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
 								</td>
-							</tr>
+							</tr> 
 							</c:forEach>
 						</tbody>
 					</table>
 					<div>
 						<button class="btn btn-danger" id="rmBtn">删除商品</button>
+						<button id="createData" class="btn btn-info"><span class="glyphicon glyphicon-file"></span>&nbsp;生成前台商品数据</button>
 					</div>
 					<div id="splitBarDiv" style="float:right">
 						<jsp:include page="/pages/plugins/split_plugin_page_bar.jsp"/> 

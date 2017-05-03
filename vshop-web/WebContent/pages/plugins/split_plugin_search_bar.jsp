@@ -52,6 +52,7 @@
 		<input type="text" name="kw" id="kw" value="<%=keyWord%>" class="form-control input-sm" placeholder="请输入检索关键字">
 	</div>
 	<div class="col-md-2">
+		<input type="hidden" name="${paramName}" id="${paramName}" value="${paramValue}">
 		<input type="submit" value="查询" class="btn btn-primary">
 	</div>
 		<%-- <p>查询一共返回“<%=allRecorders%>”行记录。</p> --%>
