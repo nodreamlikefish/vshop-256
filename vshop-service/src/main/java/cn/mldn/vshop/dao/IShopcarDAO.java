@@ -8,6 +8,15 @@ import cn.mldn.vshop.vo.Shopcar;
 
 public interface IShopcarDAO extends IBaseDAO<Integer, Shopcar> {
 	/**
+	 * 根据指定的用户编号和商品编号删除购物车数据
+	 * @param mid 用户
+	 * @param gid 商品
+	 * @return 删除成功返回true
+	 * @throws SQLException SQL
+	 */
+	public boolean doRemoveByMemberAndGid(String mid,Integer gid) throws SQLException ;
+	
+	/**
 	 * 根据当前用户编号取得所有的购物车信息
 	 * @param mid 用户编号
 	 * @return key = 商品编号、value = 商品数量。

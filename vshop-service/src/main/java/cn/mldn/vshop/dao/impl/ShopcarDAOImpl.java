@@ -12,7 +12,15 @@ import cn.mldn.vshop.dao.IShopcarDAO;
 import cn.mldn.vshop.vo.Shopcar;
 
 public class ShopcarDAOImpl extends AbstractDAO implements IShopcarDAO {
-	
+	@Override
+	public boolean doRemoveByMemberAndGid(String mid, Integer gid)
+			throws SQLException {
+		String sql = "DELETE FROM shopcar WHERE mid=? AND gid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, mid);
+		super.pstmt.setInt(2, gid);
+		return super.pstmt.executeUpdate() > 0 ;
+	}
 	@Override
 	public Map<Long, Integer> findAllByMember(String mid) throws SQLException {
 		Map<Long,Integer> map = new HashMap<Long,Integer>() ;

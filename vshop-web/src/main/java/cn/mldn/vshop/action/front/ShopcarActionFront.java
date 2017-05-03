@@ -7,6 +7,19 @@ import cn.mldn.vshop.util.action.AbstractBaseAction;
 
 public class ShopcarActionFront extends AbstractBaseAction {
 	
+	public void edit(int gid,int amount) {
+		if (super.isRoleAndAction("shopcar", "shopcar:edit")) {
+			IShopcarServiceFront shopcarService = Factory.getServiceInstance("shopcar.service.front") ;
+			try {
+				super.print(shopcarService.editAmount(super.getMid(), gid, amount));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			super.print(false);
+		}
+	}
+	
 	public ModelAndView list() {
 		if (super.isRoleAndAction("shopcar", "shopcar:list")) {
 			ModelAndView mav = new ModelAndView(super.getUrl("shopcar.list.page")) ;

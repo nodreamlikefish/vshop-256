@@ -16,6 +16,18 @@ public class ShopcarServiceFrontImpl extends AbstractService
 		implements
 			IShopcarServiceFront {
 	@Override
+	public boolean editAmount(String mid, int gid, int amount)
+			throws Exception {
+		IShopcarDAO shopcarDAO = Factory.getDAOInstance("shopcar.dao") ;
+		if (amount == 0) {	// 数量已经没有了，那么应该进行删除处理
+			return shopcarDAO.doRemoveByMemberAndGid(mid, gid) ;
+		}
+		if (amount > 0) {	// 有数量
+			return shopcarDAO.doUpdateIncrementById(mid, gid, amount) ;
+		}
+		return false;
+	}
+	@Override
 	public Map<String, Object> list(String mid) throws Exception {
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		IShopcarDAO shopcarDAO = Factory.getDAOInstance("shopcar.dao") ;

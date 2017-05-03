@@ -38,17 +38,17 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${allGoodss}" var="goods">
-									<tr>
+									<tr id="shopcar-${goods.gid}">
 										<td class="text-center">
 											<input type="checkbox" id="gid" name="gid" value="${goods.gid}">
 										</td>
 										<td class="text-center">
 											<a href="pages/front/goods/GoodsActionFront!show.action?gid=${goods.gid}" onmouseover="this.style.cursor='hand'">${goods.title}</a>
 										</td>
-										<td class="text-center"><span id="price-${goods.gid}"><fmt:formatNumber value="${goods.price}" pattern="############.##"/></span></td>
+										<td class="text-center"><span id="price-${goods.gid}"><fmt:formatNumber value="${goods.price}" pattern="########################.##"/></span></td>
 										<td class="text-center">
 											<button class="btn btn-primary" id="sub-${goods.gid}">-</button>
-											<input type="text" id="amount-${goods.gid}" name="amount-${goods.gid}" class="shopcar-form-control" size="4" maxlength="4" value="${allShopcars[goods.gid]}">
+											<input type="text" id="amount-${goods.gid}" name="amount-${goods.gid}" class="shopcar-form-control" size="4" maxlength="4" readonly value="${allShopcars[goods.gid]}">
 											<button class="btn btn-primary" id="add-${goods.gid}">+</button> 
 										</td>
 										<td class="text-center"><button class="btn btn-primary" id="updateBtn-${goods.gid}">修改</button></td>
@@ -57,7 +57,7 @@
 							</tbody>
 						</table>
 						<div class="text-right">
-							总价￥<span id="allPrice" class="text-danger h2">78.9</span>
+							总价￥<span id="allPrice" class="text-danger h2"></span>
 						</div>
 						<div>
 							<button class="btn btn-primary" id="editBtn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;修改数量</button>
