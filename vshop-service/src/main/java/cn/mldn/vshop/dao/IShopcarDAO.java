@@ -8,6 +8,15 @@ import cn.mldn.vshop.vo.Shopcar;
 
 public interface IShopcarDAO extends IBaseDAO<Integer, Shopcar> {
 	/**
+	 * 要进行批量的数据修改
+	 * @param mid 用户编号
+	 * @param sc 购物车数量的修改 （key = gid、value = amount）
+	 * @return 修改成功返回true
+ 	 * @throws SQLException SQL异常
+	 */
+	public boolean doUpdateAmountBatch(String mid,Map<Integer,Integer> sc) throws SQLException ;
+	
+	/**
 	 * 根据指定的用户编号和商品编号删除购物车数据
 	 * @param mid 用户
 	 * @param gid 商品

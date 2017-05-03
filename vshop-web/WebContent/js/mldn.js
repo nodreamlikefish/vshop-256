@@ -1,3 +1,8 @@
+function round(num,scale) {
+    return Math.round(num * Math.pow(10,scale)) /Math.pow(10,scale) ;
+}
+
+
 function bindAddcar() {
 	$("button[id*=addCar-]").each(function(){
 		var gid = $(this).attr("id").split("-")[1] ;

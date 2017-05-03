@@ -6,10 +6,32 @@ function calAllPrice() {
 		amount = $("#amount-" + id).val() ;	// 当前数量
 		allPrice += price * amount ;
 	}) ;
-	$("#allPrice").text(allPrice) ;
+	$("#allPrice").text(round(allPrice,2)) ;
 }
 $(function() {
 	calAllPrice() ;
+	
+	$(editBtn).on("click",function(){
+		sc = "" ;	// 发送的字符串
+		$(".btn-warning").each(function(){
+			gid = this.id.split("-")[1] ;	// 商品编号
+			sc += gid + ":" + $("#amount-" + gid).val() + ",";
+		}) ;
+		$.post("pages/front/center/shopcar/ShopcarActionFront!editAmount.action",{"sc" : sc},function(data){
+			if (data.trim() == "true") {
+				operateAlert(true,"购物车信息更新成功！","购物车信息更新失败！") ;
+				$(".btn-warning").each(function(){
+					gid = this.id.split("-")[1] ;	// 商品编号
+					amount = parseInt($("#amount-" + gid).val()) ;
+					if (amount == 0) {
+						$("#shopcar-" + gid).remove() ;
+					} else {
+						$("#updateBtn-" + gid).attr("class","btn btn-primary") ;
+					}
+				}) ;
+			}
+		},"text") ;
+	}) ;
 	
 	$("button[id^=updateBtn-]").each(function(){
 		$(this).on("click",function(){

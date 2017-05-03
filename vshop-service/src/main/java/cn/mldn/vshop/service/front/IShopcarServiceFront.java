@@ -4,6 +4,15 @@ import java.util.Map;
 
 public interface IShopcarServiceFront {
 	/**
+	 * 进行购物车信息的批量更新操作
+	 * @param mid 用户编号
+	 * @param sc 购物车的信息（key = gid、value = amount）
+	 * @return 更新成功返回true
+	 * @throws Exception SQL
+	 */
+	public boolean editAmounts(String mid,Map<Integer,Integer> sc) throws Exception ;
+	
+	/**
 	 * 修改指定商品的购买数量
 	 * @param mid 用户编号
 	 * @param gid 商品编号

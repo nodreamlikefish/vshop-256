@@ -15,6 +15,17 @@ import cn.mldn.vshop.vo.Shopcar;
 public class ShopcarServiceFrontImpl extends AbstractService
 		implements
 			IShopcarServiceFront {
+	
+	@Override
+	public boolean editAmounts(String mid, Map<Integer, Integer> sc)
+			throws Exception {
+		if (sc.size() == 0) {
+			return false ;
+		}
+		IShopcarDAO shopcarDAO = Factory.getDAOInstance("shopcar.dao") ;
+		return shopcarDAO.doUpdateAmountBatch(mid, sc); 
+	}
+	
 	@Override
 	public boolean editAmount(String mid, int gid, int amount)
 			throws Exception {
