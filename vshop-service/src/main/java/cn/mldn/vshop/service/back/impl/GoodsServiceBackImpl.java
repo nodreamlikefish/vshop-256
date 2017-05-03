@@ -16,6 +16,25 @@ public class GoodsServiceBackImpl extends AbstractService
 		implements
 			IGoodsServiceBack {
 	@Override
+	public boolean edit(Goods vo) throws Exception {
+		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+		return goodsDAO.doUpdate(vo);
+	}
+	@Override
+	public Map<String, Object> getEditPre(int gid) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+		Goods vo = goodsDAO.findById(gid) ;
+		if (vo != null) {
+			IItemDAO itemDAO = Factory.getDAOInstance("item.dao");
+			ISubitemDAO subitemDAO = Factory.getDAOInstance("subitem.dao");
+			map.put("allItems", itemDAO.findAll());
+			map.put("allSubitems", subitemDAO.findAllByItem(vo.getIid())) ;
+			map.put("goods", vo) ;
+		}
+		return map;
+	}
+	@Override
 	public Map<String,Object> show(int gid) throws Exception {
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;

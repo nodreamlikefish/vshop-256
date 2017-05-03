@@ -6,6 +6,27 @@ import cn.mldn.vshop.vo.Goods;
 
 public interface IGoodsServiceBack {
 	/**
+	 * 进行商品数据更新前的查询操作，该操作会执行如下功能：<br>
+	 * 1、要求根据商品编号查询出商品信息， 使用IGoodsDAO.findById()方法；<br>
+	 * 2、使用IItemDAO.findAll()方法，查询出所有的商品分类信息；<br>
+	 * 3、使用ISubitemDAO.findAllByItem()方法，查询出一个商品分类对应的所有子分类信息
+	 * @param gid 要修改商品编号
+	 * @return 返回的数据包含有如下内容：<br>
+	 * 1、key = allItems、value = 全部的商品分类；<br>
+	 * 2、key = allSubitems、value = 指定商品分类的全部子分类；<br>
+	 * 3、key = goods、value = 商品信息。
+	 * @throws Exception SQL异常
+	 */
+	public Map<String,Object> getEditPre(int gid) throws Exception ;
+	/**
+	 * 实现商品信息的修改操作 
+	 * @param vo 商品的修改数据
+	 * @return 修改成功返回true
+	 * @throws Exception SQL异常
+	 */
+	public boolean edit(Goods vo) throws Exception ;
+	
+	/**
 	 * 实现单个商品的信息显示
 	 * @param gid 商品编号
 	 * @return 商品数据，包括如下内容：<br>

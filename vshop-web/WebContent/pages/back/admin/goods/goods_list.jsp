@@ -46,10 +46,10 @@
 								</td>
 								<td class="text-center"><fmt:formatDate value="${goods.pubdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 								<td class="text-center">
-									<a type="button" class="btn btn-info btn-xs" href="pages/back/admin/goods/goods_edit.jsp">
+									<a type="button" class="btn btn-info btn-xs" href="pages/back/admin/goods/GoodsActionBack!editPre.action?gid=${goods.gid}">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
 								</td>
-							</tr>
+							</tr> 
 							</c:forEach>
 						</tbody>
 					</table>

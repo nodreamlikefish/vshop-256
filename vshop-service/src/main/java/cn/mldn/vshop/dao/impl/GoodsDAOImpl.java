@@ -30,8 +30,17 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
 	@Override
 	public boolean doUpdate(Goods vo) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "UPDATE goods SET iid=?,sid=?,mid=?,price=?,note=?,title=?,photo=? WHERE gid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, vo.getIid());
+		super.pstmt.setInt(2, vo.getSid());
+		super.pstmt.setString(3, vo.getMid());
+		super.pstmt.setDouble(4, vo.getPrice());
+		super.pstmt.setString(5, vo.getNote());
+		super.pstmt.setString(6, vo.getTitle());
+		super.pstmt.setString(7, vo.getPhoto());
+		super.pstmt.setInt(8, vo.getGid());
+		return super.pstmt.executeUpdate() > 0 ;
 	}
 
 	@Override
