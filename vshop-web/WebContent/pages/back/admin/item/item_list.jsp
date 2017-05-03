@@ -38,6 +38,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<button id="createData" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-file"></span>&nbsp;生成前台商品分类数据</button>
 				</div>
 				<div class="panel-footer">
 					<jsp:include page="/pages/plugins/include_alert.jsp"/>
