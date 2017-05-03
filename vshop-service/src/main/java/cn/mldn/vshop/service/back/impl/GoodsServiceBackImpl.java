@@ -2,6 +2,7 @@ package cn.mldn.vshop.service.back.impl;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +17,11 @@ import cn.mldn.vshop.vo.Goods;
 public class GoodsServiceBackImpl extends AbstractService
 		implements
 			IGoodsServiceBack {
+	@Override
+	public List<Goods> listDetails() throws Exception {
+		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+		return goodsDAO.findAllSplit(1, 12); 	// 显示12条数据信息
+	}
 	@Override
 	public boolean delete(Set<Integer> gid) throws Exception {
 		if (gid == null || gid.size() == 0) {

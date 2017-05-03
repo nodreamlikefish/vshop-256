@@ -2,7 +2,7 @@
 <header class="main-header">
 
 	<!-- Logo -->
-	<a href="pages/back/index.jsp" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>V</b>S</span> <!-- logo for regular state and mobile devices -->
 		<span class="logo-lg"><b>V</b>Shop</span>
 	</a>

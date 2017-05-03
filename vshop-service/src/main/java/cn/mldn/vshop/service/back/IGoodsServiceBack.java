@@ -1,11 +1,19 @@
 package cn.mldn.vshop.service.back;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import cn.mldn.vshop.vo.Goods;
 
 public interface IGoodsServiceBack {
+	/**
+	 * 进行最新商品信息的列出显示
+	 * @return 商品数据
+	 * @throws Exception SQL
+	 */
+	public List<Goods> listDetails() throws Exception ;
+	
 	/**
 	 * 进行商品信息的逻辑删除，调用IGoodsDAO.doUpdateDeflag()方法
 	 * @param gid 要删除的商品编号，该编号集合不允许为空

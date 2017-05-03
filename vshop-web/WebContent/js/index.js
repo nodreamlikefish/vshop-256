@@ -1,4 +1,20 @@
 $(function() {
+	$(goodsDiv).empty() ;
+	$.get("goods.json",function(data){
+		for (x = 0 ;  x < data.allGoodss.length ; x ++) {
+			itemData = 
+				"<div class='col-md-3 text-center'>" +
+				"	<p>" +
+				"		<a href='pages/front/goods/GoodsActionFront!show.action?gid="+data.allGoodss[x].gid+"'>" +
+				"			<img src='upload/goods/"+data.allGoodss[x].photo+"' style='width:100px; height:100px;'></a></p>" +
+				"		<span class='text-warning h4'><strong>￥"+data.allGoodss[x].price+"</strong></span>" +
+				"	<p><a href='pages/front/goods/GoodsActionFront!show.action?gid="+data.allGoodss[x].gid+"''>"+data.allGoodss[x].title+"</a></p>" +
+				"	<button id='addCar-"+data.allGoodss[x].gid+"' class='btn btn-primary btn-xs'>" +
+				"		<span class='glyphicon glyphicon-shopping-cart'></span>&nbsp;加入购物车</button>" +
+				"</div>" ;
+			$(goodsDiv).append(itemData) ;
+		}
+	},"json") ;
 	
 	$.get("item.json",{},function(data){
 		for (x = 0 ; x < data.items.length ; x ++){

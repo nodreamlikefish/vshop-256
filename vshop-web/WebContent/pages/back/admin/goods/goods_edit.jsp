@@ -99,6 +99,7 @@
 							</div> 
 							<div class="form-group">
 								<div class="col-md-5 col-md-offset-3">
+									<input type="hidden" name="oldphoto" id="oldphoto" value="${goods.photo}">
 									<input type="hidden" name="gid" id="gid" value="${goods.gid}">
 									<button type="submit" class="btn btn-primary">编辑</button>
 									<button type="reset" class="btn btn-warning">重置</button>

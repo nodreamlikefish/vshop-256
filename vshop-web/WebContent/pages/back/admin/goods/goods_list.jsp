@@ -55,6 +55,7 @@
 					</table>
 					<div>
 						<button class="btn btn-danger" id="rmBtn">删除商品</button>
+						<button id="createData" class="btn btn-info"><span class="glyphicon glyphicon-file"></span>&nbsp;生成前台商品数据</button>
 					</div>
 					<div id="splitBarDiv" style="float:right">
 						<jsp:include page="/pages/plugins/split_plugin_page_bar.jsp"/> 

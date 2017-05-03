@@ -1,4 +1,10 @@
 $(function(){
+	$(createData).on("click",function(){
+		$.post("pages/back/admin/goods/GoodsActionBack!listDetails.action",{},
+				function(data){
+			operateAlert(data.trim() == "true","商品数据创建成功！","商品数据创建失败！") ;
+		},"text") ;
+	}) ;
 	$("#selectAll").on("click",function(){
 		checkboxSelectAll('gid',this.checked) ;
 	}) ;

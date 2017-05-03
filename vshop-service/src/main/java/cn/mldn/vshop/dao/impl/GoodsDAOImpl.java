@@ -105,7 +105,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 	public List<Goods> findAllSplit(Integer currentPage, Integer lineSize)
 			throws SQLException {
 		List<Goods> all = new ArrayList<Goods>() ;
-		String sql = "SELECT gid,iid,sid,mid,price,pubdate,note,delflag,photo,title FROM goods WHERE delflag=0 LIMIT ?,?" ;
+		String sql = "SELECT gid,iid,sid,mid,price,pubdate,note,delflag,photo,title FROM goods WHERE delflag=0 ORDER BY pubdate DESC LIMIT ?,?" ;
 		super.pstmt = super.conn.prepareStatement(sql) ;
 		super.pstmt.setInt(1, (currentPage - 1) * lineSize);
 		super.pstmt.setInt(2, lineSize);
@@ -117,7 +117,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 			vo.setSid(rs.getInt(3));
 			vo.setMid(rs.getString(4));
 			vo.setPrice(rs.getDouble(5));
-			vo.setPubdate(rs.getDate(6));
+			vo.setPubdate(rs.getTimestamp(6));
 			vo.setNote(rs.getString(7));
 			vo.setDelflag(rs.getInt(8));
 			vo.setPhoto(rs.getString(9));
@@ -132,7 +132,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 			String column, String keyWord) throws SQLException {
 		List<Goods> all = new ArrayList<Goods>() ;
 		String sql = "SELECT gid,iid,sid,mid,price,pubdate,note,delflag,photo,title "
-				+ " FROM goods WHERE delflag=0 AND "+column +" LIKE ? LIMIT ?,?" ;
+				+ " FROM goods WHERE delflag=0 AND "+column +" LIKE ?  ORDER BY pubdate DESC LIMIT ?,?" ;
 		super.pstmt = super.conn.prepareStatement(sql) ;
 		super.pstmt.setString(1, "%"+keyWord+"%");
 		super.pstmt.setInt(2, (currentPage - 1) * lineSize);
@@ -145,7 +145,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 			vo.setSid(rs.getInt(3));
 			vo.setMid(rs.getString(4));
 			vo.setPrice(rs.getDouble(5));
-			vo.setPubdate(rs.getDate(6));
+			vo.setPubdate(rs.getTimestamp(6));
 			vo.setNote(rs.getString(7));
 			vo.setDelflag(rs.getInt(8));
 			vo.setPhoto(rs.getString(9));
