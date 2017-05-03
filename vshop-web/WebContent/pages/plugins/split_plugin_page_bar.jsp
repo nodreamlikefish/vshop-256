@@ -50,7 +50,7 @@
 		<%
 			} else {
 		%>
-			<a href="<%=url%>?cp=<%=1%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>">1</a></li>
+			<a href="<%=url%>?cp=<%=1%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>&${paramName}=${paramValue}">1</a></li>
 		<%
 			}
 		%>
@@ -64,7 +64,7 @@
 			}
 			for (int x = startPage ; x <= endPage ; x ++) {
 %>
-			<li class="<%=currentPage == x ? "active" : ""%>"><a href="<%=url%>?cp=<%=x%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>"><%=x%></a></li>
+			<li class="<%=currentPage == x ? "active" : ""%>"><a href="<%=url%>?cp=<%=x%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>&${paramName}=${paramValue}"><%=x%></a></li>
 <%
 			}
 			if ((currentPage + seed * 2) < pageSize - 1) {
@@ -83,7 +83,7 @@
 			}
 			for (int x = startPage ; x <= endPage ; x ++) {
 %>
-			<li class="<%=currentPage == x ? "active" : ""%>"><a href="<%=url%>?cp=<%=x%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>"><%=x%></a></li>
+			<li class="<%=currentPage == x ? "active" : ""%>"><a href="<%=url%>?cp=<%=x%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>&${paramName}=${paramValue}"><%=x%></a></li>
 <%
 			}
 			if ((currentPage + seed * 2) < pageSize) {	// 后面还有很多页
@@ -93,7 +93,7 @@
 			} else {	// 后续的页码需要出现
 				for (int x = currentPage + seed + 1 ; x < pageSize ; x ++ ) {
 %>
-			<li class="<%=currentPage == x ? "active" : ""%>"><a href="<%=url%>?cp=<%=x%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>"><%=x%></a></li>
+			<li class="<%=currentPage == x ? "active" : ""%>"><a href="<%=url%>?cp=<%=x%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>&${paramName}=${paramValue}"><%=x%></a></li>
 <%
 				}
 			}
@@ -111,7 +111,7 @@
 		<%
 			} else {
 		%>
-				<a href="<%=url%>?cp=<%=pageSize%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>"><%=pageSize%></a>
+				<a href="<%=url%>?cp=<%=pageSize%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>&${paramName}=${paramValue}"><%=pageSize%></a>
 		<%
 			}
 		%>

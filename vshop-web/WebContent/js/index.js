@@ -31,7 +31,7 @@ $(function() {
 				"			<div class='panel-body'>" +
 				"				<div class='row'>"  ;
 			for (y = 0 ; y < data.items[x].subitems.length ; y ++) {
-				itemData += "<div class='col-md-4'><a href='#'>"+data.items[x].subitems[y].title+"</a></div>" ;
+				itemData += "<div class='col-md-4'><a href='pages/front/goods/GoodsActionFront!list.action?sid="+data.items[x].subitems[y].sid+"'>"+data.items[x].subitems[y].title+"</a></div>" ;
 			}
 			itemData += "				</div>" +
 						"			</div>" +

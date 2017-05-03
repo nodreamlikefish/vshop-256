@@ -100,6 +100,33 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Goods> findAllSplitBySubitem(Integer sid, Integer currentPage,
+			Integer lineSize) throws SQLException {
+		List<Goods> all = new ArrayList<Goods>() ;
+		String sql = "SELECT gid,iid,sid,mid,price,pubdate,note,delflag,photo,title FROM goods WHERE delflag=0 AND sid=? ORDER BY pubdate DESC LIMIT ?,?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, sid);
+		super.pstmt.setInt(2, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(3, lineSize);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			Goods vo = new Goods() ;
+			vo.setGid(rs.getInt(1));
+			vo.setIid(rs.getInt(2));
+			vo.setSid(rs.getInt(3));
+			vo.setMid(rs.getString(4));
+			vo.setPrice(rs.getDouble(5));
+			vo.setPubdate(rs.getTimestamp(6));
+			vo.setNote(rs.getString(7));
+			vo.setDelflag(rs.getInt(8));
+			vo.setPhoto(rs.getString(9));
+			vo.setTitle(rs.getString(10));
+			all.add(vo) ;
+		}
+		return all;
+	}
 
 	@Override
 	public List<Goods> findAllSplit(Integer currentPage, Integer lineSize)
@@ -152,6 +179,18 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 			all.add(vo) ;
 		}
 		return all;
+	}
+	
+	@Override
+	public Integer getAllCountBySubitem(Integer sid) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM goods WHERE delflag=0 AND sid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, sid);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			return rs.getInt(1) ;
+		}
+		return 0;
 	}
 
 	@Override
