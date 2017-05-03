@@ -9,6 +9,14 @@ import cn.mldn.vshop.vo.Goods;
 
 public interface IGoodsDAO extends IBaseDAO<Integer, Goods> {
 	/**
+	 * 根据指定的编号取得所有的商品信息
+	 * @param ids 所有要查询的商品
+	 * @return 商品信息
+	 * @throws SQLException SQL异常
+	 */
+	public List<Goods> findAllByIds(Set<Long> ids) throws SQLException ;
+	
+	/**
 	 * 进行多个商品信息的标记更新处理
 	 * @param ids 要更新的商品ID
 	 * @param delflag 商品删除标记

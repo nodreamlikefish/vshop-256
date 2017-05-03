@@ -5,7 +5,7 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Goods implements Serializable {
-	private Integer gid ;
+	private Long gid ;
 	private Integer iid ;
 	private Integer sid ;
 	private String title ;
@@ -21,11 +21,11 @@ public class Goods implements Serializable {
 	public String getTitle() {
 		return title;
 	}
-	public Integer getGid() {
-		return gid;
-	}
-	public void setGid(Integer gid) {
+	public void setGid(Long gid) {
 		this.gid = gid;
+	}
+	public Long getGid() {
+		return gid;
 	}
 	public Integer getIid() {
 		return iid;

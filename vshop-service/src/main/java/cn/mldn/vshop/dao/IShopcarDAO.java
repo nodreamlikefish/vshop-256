@@ -1,11 +1,20 @@
 package cn.mldn.vshop.dao;
 
 import java.sql.SQLException;
+import java.util.Map;
 
 import cn.mldn.util.dao.IBaseDAO;
 import cn.mldn.vshop.vo.Shopcar;
 
 public interface IShopcarDAO extends IBaseDAO<Integer, Shopcar> {
+	/**
+	 * 根据当前用户编号取得所有的购物车信息
+	 * @param mid 用户编号
+	 * @return key = 商品编号、value = 商品数量。
+	 * @throws SQLException
+	 */
+	public Map<Long,Integer> findAllByMember(String mid) throws SQLException ;
+	
 	/**
 	 * 根据用户的编号和商品编号来查处已有的购物车数据
 	 * @param mid 用户编号

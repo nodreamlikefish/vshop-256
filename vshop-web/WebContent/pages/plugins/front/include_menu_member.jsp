@@ -6,6 +6,7 @@
 	public static final String GOODS_SEARCH_URL = "pages/front/goods/GoodsActionFront!search.action" ;
 	public static final String MEMBER_BASE_EDIT_URL = "pages/front/center/member/MemberCenterActionFront!eidtBasePre.action" ;
 	public static final String LOGOUT_URL = "MemberLoginActionFront!logout.action" ;
+	public static final String SHOPCAR_LIST_URL = "pages/front/center/shopcar/ShopcarActionFront!list.action" ;
 %>
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
 	<div class="navbar-header">
@@ -30,7 +31,7 @@
 					</ul></li>
 			</c:if>
 			<c:if test="${fn:contains(allRoles,'shopcar')}">
-			<li><a href="pages/front/center/shopcar/shopcar_list.jsp">
+			<li><a href="<%=SHOPCAR_LIST_URL%>">
 				<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的购物车</a></li>
 			</c:if>
 		</c:if>

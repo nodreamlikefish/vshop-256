@@ -1,14 +1,33 @@
 package cn.mldn.vshop.service.front.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import cn.mldn.util.factory.Factory;
+import cn.mldn.vshop.dao.IGoodsDAO;
 import cn.mldn.vshop.dao.IShopcarDAO;
 import cn.mldn.vshop.service.abs.AbstractService;
 import cn.mldn.vshop.service.front.IShopcarServiceFront;
+import cn.mldn.vshop.vo.Goods;
 import cn.mldn.vshop.vo.Shopcar;
 
 public class ShopcarServiceFrontImpl extends AbstractService
 		implements
 			IShopcarServiceFront {
+	@Override
+	public Map<String, Object> list(String mid) throws Exception {
+		Map<String,Object> map = new HashMap<String,Object>() ;
+		IShopcarDAO shopcarDAO = Factory.getDAOInstance("shopcar.dao") ;
+		Map<Long,Integer> shopcar = shopcarDAO.findAllByMember(mid) ;
+		if (shopcar.size() > 0) {
+			IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+			List<Goods> allGoodss = goodsDAO.findAllByIds(shopcar.keySet()) ;
+			map.put("allGoodss", allGoodss) ;
+		}
+		map.put("allShopcars", shopcar) ;
+		return map;
+	}
 
 	@Override
 	public boolean add(String mid, int gid) throws Exception {

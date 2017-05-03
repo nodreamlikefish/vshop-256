@@ -14,6 +14,35 @@ import cn.mldn.vshop.vo.Goods;
 public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
 	@Override
+	public List<Goods> findAllByIds(Set<Long> ids) throws SQLException {
+		StringBuffer buf = new StringBuffer() ;
+		buf.append(" SELECT gid,iid,sid,mid,price,pubdate,note,delflag,photo,title FROM goods ") ;
+		buf.append(" WHERE gid IN (") ;
+		Iterator<Long> iter = ids.iterator() ;
+		while (iter.hasNext()) {
+			buf.append(iter.next()).append(",") ;
+		}
+		buf.delete(buf.length() - 1, buf.length()).append(") AND delflag=0") ;
+		super.pstmt = super.conn.prepareStatement(buf.toString()) ;
+		List<Goods> all = new ArrayList<Goods>() ;
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			Goods vo = new Goods() ;
+			vo.setGid(rs.getLong(1));
+			vo.setIid(rs.getInt(2));
+			vo.setSid(rs.getInt(3));
+			vo.setMid(rs.getString(4));
+			vo.setPrice(rs.getDouble(5));
+			vo.setPubdate(rs.getTimestamp(6));
+			vo.setNote(rs.getString(7));
+			vo.setDelflag(rs.getInt(8));
+			vo.setPhoto(rs.getString(9));
+			vo.setTitle(rs.getString(10));
+			all.add(vo) ;
+		}
+		return all;
+	}
+	@Override
 	public boolean doUpdateDeflag(Set<Integer> ids, int delflag)
 			throws SQLException {
 		StringBuffer buf = new StringBuffer() ;
@@ -56,7 +85,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 		super.pstmt.setString(5, vo.getNote());
 		super.pstmt.setString(6, vo.getTitle());
 		super.pstmt.setString(7, vo.getPhoto());
-		super.pstmt.setInt(8, vo.getGid());
+		super.pstmt.setLong(8, vo.getGid());
 		return super.pstmt.executeUpdate() > 0 ;
 	}
 
@@ -80,7 +109,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 		ResultSet rs = super.pstmt.executeQuery() ;
 		if (rs.next()) {
 			Goods vo = new Goods() ;
-			vo.setGid(rs.getInt(1));
+			vo.setGid(rs.getLong(1));
 			vo.setIid(rs.getInt(2));
 			vo.setSid(rs.getInt(3));
 			vo.setMid(rs.getString(4));
@@ -113,7 +142,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 		ResultSet rs = super.pstmt.executeQuery() ;
 		while (rs.next()) {
 			Goods vo = new Goods() ;
-			vo.setGid(rs.getInt(1));
+			vo.setGid(rs.getLong(1));
 			vo.setIid(rs.getInt(2));
 			vo.setSid(rs.getInt(3));
 			vo.setMid(rs.getString(4));
@@ -139,7 +168,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 		ResultSet rs = super.pstmt.executeQuery() ;
 		while (rs.next()) {
 			Goods vo = new Goods() ;
-			vo.setGid(rs.getInt(1));
+			vo.setGid(rs.getLong(1));
 			vo.setIid(rs.getInt(2));
 			vo.setSid(rs.getInt(3));
 			vo.setMid(rs.getString(4));
@@ -167,7 +196,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 		ResultSet rs = super.pstmt.executeQuery() ;
 		while (rs.next()) {
 			Goods vo = new Goods() ;
-			vo.setGid(rs.getInt(1));
+			vo.setGid(rs.getLong(1));
 			vo.setIid(rs.getInt(2));
 			vo.setSid(rs.getInt(3));
 			vo.setMid(rs.getString(4));

@@ -37,36 +37,23 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="text-center">
-										<input type="checkbox" id="gid" name="gid" value="1">
-									</td>
-									<td class="text-center">
-										<a href="pages/front/goods/goods_show.jsp" onmouseover="this.style.cursor='hand'">Java开发实战经典</a>
-									</td>
-									<td class="text-center"><span id="price-1">79.8</span></td>
-									<td class="text-center">
-										<button class="btn btn-primary" id="sub-1">-</button>
-										<input type="text" id="amount-1" name="amount-1" class="shopcar-form-control" size="4" maxlength="4" value="20">
-										<button class="btn btn-primary" id="add-1">+</button> 
-									</td>
-									<td class="text-center"><button class="btn btn-primary" id="updateBtn-1">修改</button></td>
-								</tr>
-								<tr> 
-									<td class="text-center">
-										<input type="checkbox" id="gid" name="gid" value="2">
-									</td>
-									<td class="text-center">
-										<a href="pages/front/goods/goods_show.jsp" onmouseover="this.style.cursor='hand'">Java开发实战经典</a>
-									</td>
-									<td class="text-center"><span id="price-2">79.8</span></td>
-									<td class="text-center">
-										<button class="btn btn-primary" id="sub-2">-</button>
-										<input type="text" id="amount-2" name="amount-2" class="shopcar-form-control" size="4" maxlength="4" value="20">
-										<button class="btn btn-primary" id="add-2">+</button> 
-									</td>
-									<td class="text-center"><button class="btn btn-primary" id="updateBtn-2">修改</button></td>
-								</tr>
+								<c:forEach items="${allGoodss}" var="goods">
+									<tr>
+										<td class="text-center">
+											<input type="checkbox" id="gid" name="gid" value="${goods.gid}">
+										</td>
+										<td class="text-center">
+											<a href="pages/front/goods/GoodsActionFront!show.action?gid=${goods.gid}" onmouseover="this.style.cursor='hand'">${goods.title}</a>
+										</td>
+										<td class="text-center"><span id="price-${goods.gid}"><fmt:formatNumber value="${goods.price}" pattern="############.##"/></span></td>
+										<td class="text-center">
+											<button class="btn btn-primary" id="sub-${goods.gid}">-</button>
+											<input type="text" id="amount-${goods.gid}" name="amount-${goods.gid}" class="shopcar-form-control" size="4" maxlength="4" value="${allShopcars[goods.gid]}">
+											<button class="btn btn-primary" id="add-${goods.gid}">+</button> 
+										</td>
+										<td class="text-center"><button class="btn btn-primary" id="updateBtn-${goods.gid}">修改</button></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						<div class="text-right">
