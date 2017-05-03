@@ -1,4 +1,6 @@
 $(function() {
+
+	
 	$(goodsDiv).empty() ;
 	$.get("goods.json",function(data){
 		for (x = 0 ;  x < data.allGoodss.length ; x ++) {
@@ -14,6 +16,7 @@ $(function() {
 				"</div>" ;
 			$(goodsDiv).append(itemData) ;
 		}
+		bindAddcar() ;	// 调用事件绑定处理函数
 	},"json") ;
 	
 	$.get("item.json",{},function(data){
@@ -40,12 +43,5 @@ $(function() {
 			$(item).append(itemData) ;
 		}
 	},"json") ;
-	
-	$("button[id*=addCar-]").each(function(){
-		var gid = $(this).attr("id").split("-")[1] ;
-		$(this).on("click",function(){
-			console.log("*** gid = " + gid) ;
-			operateAlert(true,"购物车添加成功！","购物车添加失败！") ;
-		}) ;
-	}) ; 
+
 }) 
