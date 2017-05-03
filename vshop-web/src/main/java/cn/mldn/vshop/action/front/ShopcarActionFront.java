@@ -1,7 +1,9 @@
 package cn.mldn.vshop.action.front;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import cn.mldn.util.factory.Factory;
 import cn.mldn.util.web.ModelAndView;
@@ -11,6 +13,26 @@ import cn.mldn.vshop.util.action.AbstractBaseAction;
 
 public class ShopcarActionFront extends AbstractBaseAction {
 
+	public void delete() {
+		if (super.isRoleAndAction("shopcar", "shopcar:delete")) {
+			String val = ParameterValueUtil.getParameter("sc"); // 要修改的数据
+			Set<Integer> sc = new HashSet<Integer>() ;
+			String result [] = val.split(",") ;
+			for (int x = 0 ; x < result.length ; x ++) {
+				sc.add(Integer.parseInt(result[x])) ;
+			}
+			IShopcarServiceFront shopcarService = Factory
+					.getServiceInstance("shopcar.service.front");
+			try {
+				super.print(shopcarService.deleteByMember(super.getMid(), sc));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			super.print(false);
+		}
+	}
+	
 	public void editAmount() { // 该接收的数据必须通过自己手工处理了
 		if (super.isRoleAndAction("shopcar", "shopcar:edit")) {
 			// 数据的格式：商品编号:数量,商品编号:数量,...

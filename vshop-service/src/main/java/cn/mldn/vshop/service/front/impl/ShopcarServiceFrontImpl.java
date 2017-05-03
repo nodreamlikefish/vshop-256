@@ -3,6 +3,7 @@ package cn.mldn.vshop.service.front.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import cn.mldn.util.factory.Factory;
 import cn.mldn.vshop.dao.IGoodsDAO;
@@ -15,6 +16,15 @@ import cn.mldn.vshop.vo.Shopcar;
 public class ShopcarServiceFrontImpl extends AbstractService
 		implements
 			IShopcarServiceFront {
+	@Override
+	public boolean deleteByMember(String mid, Set<Integer> gids)
+			throws Exception {
+		if (gids == null || gids.size() == 0) {
+			return false ;
+		}
+		IShopcarDAO shopcarDAO = Factory.getDAOInstance("shopcar.dao") ;
+		return shopcarDAO.doRemoveByMemberAndGoods(mid, gids);
+	}
 	
 	@Override
 	public boolean editAmounts(String mid, Map<Integer, Integer> sc)

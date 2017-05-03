@@ -11,6 +11,28 @@ function calAllPrice() {
 $(function() {
 	calAllPrice() ;
 	
+	$("#rmBtn").on("click",function(){	// 绑定用户锁定操作
+		gid = "" ;
+		$("#gid:checked").each(function(){
+			gid += $(this).val() + "," ;
+		}) ;
+		if (gid != "") {
+			if (window.confirm("亲，您真的不要了吗？不要啊。。。不要的。。。")) {
+				$.post("pages/front/center/shopcar/ShopcarActionFront!delete.action",{"sc" : gid},function(data){
+					if (data.trim() == "true") {
+						operateAlert(true,"购物车信息删除成功！","购物车信息删除失败！") ;
+						$("#gid:checked").each(function(){
+							$("#shopcar-" + $(this).val()).remove() ;
+						}) ;
+						calAllPrice() ;
+					}
+				},"text") ;
+			}
+		} else {
+			operateAlert(false,"","对不起，你还未选择要删除的商品！") ;
+		}
+	}) ;
+	
 	$(editBtn).on("click",function(){
 		sc = "" ;	// 发送的字符串
 		$(".btn-warning").each(function(){
@@ -78,8 +100,5 @@ $(function() {
 	}) ;
 	$("#selectAll").on("click",function(){
 		checkboxSelectAll('gid',this.checked) ;
-	}) ;
-	$("#rmBtn").on("click",function(){	// 绑定用户锁定操作
-		operateChecked("确定要删除这些商品吗？","gid",'pages/back/admin/goods/GoodsActionBack!rm.action?p=p') ;
 	}) ;
 })

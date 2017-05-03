@@ -1,8 +1,18 @@
 package cn.mldn.vshop.service.front;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface IShopcarServiceFront {
+	/**
+	 * 根据用户编号和商品编号删除购物车信息
+	 * @param mid 用户编号
+	 * @param gids 全部商品编号
+	 * @return 成功返回true
+	 * @throws Exception SQL
+	 */
+	public boolean deleteByMember(String mid,Set<Integer> gids) throws Exception ;
+	
 	/**
 	 * 进行购物车信息的批量更新操作
 	 * @param mid 用户编号
