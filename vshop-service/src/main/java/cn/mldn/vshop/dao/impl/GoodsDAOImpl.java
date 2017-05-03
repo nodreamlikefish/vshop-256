@@ -3,6 +3,7 @@ package cn.mldn.vshop.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +13,22 @@ import cn.mldn.vshop.vo.Goods;
 
 public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
+	@Override
+	public boolean doUpdateDeflag(Set<Integer> ids, int delflag)
+			throws SQLException {
+		StringBuffer buf = new StringBuffer() ;
+		buf.append("UPDATE goods SET delflag=? WHERE gid IN (") ;
+		Iterator<Integer> iter = ids.iterator() ;
+		while (iter.hasNext()) {
+			buf.append(iter.next()).append(",") ;
+		}
+		buf.delete(buf.length() - 1, buf.length()).append(")") ;
+		super.pstmt = super.conn.prepareStatement(buf.toString()) ;
+		super.pstmt.setInt(1, delflag);
+		super.pstmt.executeUpdate() ;
+		return true;
+	}
+	
 	@Override
 	public boolean doCreate(Goods vo) throws SQLException {
 		String sql = "INSERT INTO goods(iid,sid,mid,price,pubdate,note,delflag,photo,title) VALUES (?,?,?,?,?,?,?,?,?)" ;

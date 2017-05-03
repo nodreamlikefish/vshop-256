@@ -1,10 +1,19 @@
 package cn.mldn.vshop.service.back;
 
 import java.util.Map;
+import java.util.Set;
 
 import cn.mldn.vshop.vo.Goods;
 
 public interface IGoodsServiceBack {
+	/**
+	 * 进行商品信息的逻辑删除，调用IGoodsDAO.doUpdateDeflag()方法
+	 * @param gid 要删除的商品编号，该编号集合不允许为空
+	 * @return 更新成功返回true
+	 * @throws Exception SQL
+	 */
+	public boolean delete(Set<Integer> gid) throws Exception ;
+	
 	/**
 	 * 进行商品数据更新前的查询操作，该操作会执行如下功能：<br>
 	 * 1、要求根据商品编号查询出商品信息， 使用IGoodsDAO.findById()方法；<br>

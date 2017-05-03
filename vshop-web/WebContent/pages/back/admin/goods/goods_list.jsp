@@ -33,7 +33,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${allGoodss}" var="goods">
-							<tr>
+							<tr id="goods-${goods.gid}">
 								<td class="text-center">
 									<input type="checkbox" id="gid" name="gid" value="${goods.gid}">
 								</td>

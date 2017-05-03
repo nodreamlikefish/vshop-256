@@ -3,6 +3,7 @@ package cn.mldn.vshop.service.back.impl;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import cn.mldn.util.factory.Factory;
 import cn.mldn.vshop.dao.IGoodsDAO;
@@ -15,6 +16,14 @@ import cn.mldn.vshop.vo.Goods;
 public class GoodsServiceBackImpl extends AbstractService
 		implements
 			IGoodsServiceBack {
+	@Override
+	public boolean delete(Set<Integer> gid) throws Exception {
+		if (gid == null || gid.size() == 0) {
+			return false ;
+		}
+		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+		return goodsDAO.doUpdateDeflag(gid, 1);
+	}
 	@Override
 	public boolean edit(Goods vo) throws Exception {
 		IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
