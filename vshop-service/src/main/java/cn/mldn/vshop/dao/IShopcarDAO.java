@@ -35,11 +35,22 @@ public interface IShopcarDAO extends IBaseDAO<Integer, Shopcar> {
 	 */
 	public boolean doRemoveByMemberAndGid(String mid,Integer gid) throws SQLException ;
 	
+	
+	/**
+	 * 根据当前用户编号取得所有的购物车信息
+	 * @param mid 用户编号
+	 * @param gid 购物车中的部分商品编号
+	 * @return key = 商品编号、value = 商品数量。
+	 * @throws SQLException SQL
+	 */
+	public Map<Long,Integer> findAllByMember(String mid,Set<Long> gid) throws SQLException ;	
+	
+	
 	/**
 	 * 根据当前用户编号取得所有的购物车信息
 	 * @param mid 用户编号
 	 * @return key = 商品编号、value = 商品数量。
-	 * @throws SQLException
+	 * @throws SQLException SQL
 	 */
 	public Map<Long,Integer> findAllByMember(String mid) throws SQLException ;
 	

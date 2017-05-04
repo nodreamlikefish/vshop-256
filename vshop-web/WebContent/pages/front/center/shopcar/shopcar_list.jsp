@@ -62,7 +62,7 @@
 						<div>
 							<button class="btn btn-primary" id="editBtn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;修改数量</button>
 							<button class="btn btn-danger" id="rmBtn"><span class="glyphicon glyphicon-remove"></span>&nbsp;移出购物车</button>
-							<a class="btn btn-success" href="pages/front/center/orders/orders_add.jsp" id="addBtn"><span class="glyphicon glyphicon-file"></span>&nbsp;下单</a>
+							<button class="btn btn-success" id="addBtn"><span class="glyphicon glyphicon-file"></span>&nbsp;下单</button> 
 						</div>
 					</div>
 					<div class="panel-footer">

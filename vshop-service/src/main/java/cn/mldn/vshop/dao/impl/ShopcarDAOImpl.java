@@ -59,6 +59,26 @@ public class ShopcarDAOImpl extends AbstractDAO implements IShopcarDAO {
 		super.pstmt.setInt(2, gid);
 		return super.pstmt.executeUpdate() > 0 ;
 	}
+	
+	@Override
+	public Map<Long, Integer> findAllByMember(String mid,Set<Long> gid) throws SQLException {
+		Map<Long,Integer> map = new HashMap<Long,Integer>() ;
+		StringBuffer buf = new StringBuffer() ;
+		buf.append("SELECT gid,amount FROM shopcar WHERE mid=? AND gid IN (") ;
+		Iterator<Long> iter = gid.iterator() ;
+		while (iter.hasNext()) {
+			buf.append(iter.next()).append(",") ;
+		}
+		buf.delete(buf.length() - 1, buf.length()).append(")") ;
+		super.pstmt = super.conn.prepareStatement(buf.toString()) ;
+		super.pstmt.setString(1, mid);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			map.put(rs.getLong(1), rs.getInt(2)) ;
+		}
+		return map;
+	}
+	
 	@Override
 	public Map<Long, Integer> findAllByMember(String mid) throws SQLException {
 		Map<Long,Integer> map = new HashMap<Long,Integer>() ;
