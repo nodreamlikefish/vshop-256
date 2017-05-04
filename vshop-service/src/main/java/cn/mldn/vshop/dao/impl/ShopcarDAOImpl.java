@@ -14,6 +14,21 @@ import cn.mldn.vshop.vo.Shopcar;
 
 public class ShopcarDAOImpl extends AbstractDAO implements IShopcarDAO {
 	@Override
+	public boolean doRemoveByMemberAndGoods2(String mid, Set<Long> gid)
+			throws SQLException { 
+		StringBuffer buf = new StringBuffer() ;
+		buf.append("DELETE FROM shopcar WHERE mid=? AND gid IN (") ;
+		Iterator<Long> iter = gid.iterator() ;
+		while (iter.hasNext()) {
+			buf.append(iter.next()).append(",") ;
+		}
+		buf.delete(buf.length() - 1, buf.length()).append(")") ;
+		super.pstmt = super.conn.prepareStatement(buf.toString()) ;
+		super.pstmt.setString(1, mid);
+		return super.pstmt.executeUpdate() > 0 ;
+	}
+	
+	@Override
 	public boolean doRemoveByMemberAndGoods(String mid, Set<Integer> gid)
 			throws SQLException {
 		StringBuffer buf = new StringBuffer() ;
