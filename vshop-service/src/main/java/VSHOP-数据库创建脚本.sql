@@ -149,6 +149,7 @@ INSERT INTO role(title,flag) VALUES ('【前台用户】个人中心','center') 
 INSERT INTO role(title,flag) VALUES ('【前台用户】购物车','shopcar') ;
 INSERT INTO role(title,flag) VALUES ('【前台用户】个人资料','info') ;
 INSERT INTO role(title,flag) VALUES ('【前台用户】地址管理','address') ;
+INSERT INTO role(title,flag) VALUES ('【前台用户】订单中心','orders') ;
 -- 增加管理员权限信息
 INSERT INTO action(title,flag,rid) VALUES ('锁定用户','member:lock',1) ;
 INSERT INTO action(title,flag,rid) VALUES ('用户列表','member:list',1) ;
@@ -176,6 +177,9 @@ INSERT INTO action(title,flag,rid) VALUES ('配送地址添加','address:add',8)
 INSERT INTO action(title,flag,rid) VALUES ('配送地址列表','address:list',8) ;
 INSERT INTO action(title,flag,rid) VALUES ('配送地址修改','address:edit',8) ;
 INSERT INTO action(title,flag,rid) VALUES ('配送地址删除','address:delete',8) ;
+INSERT INTO action(title,flag,rid) VALUES ('订单列表','orders:list',9) ;
+INSERT INTO action(title,flag,rid) VALUES ('订单查看','orders:show',9) ;
+INSERT INTO action(title,flag,rid) VALUES ('订单创建','orders:add',9) ;
 
 -- 设置用户与角色的对应关系
 INSERT INTO member_role(mid,rid) VALUES ('vadmin',1) ;
@@ -186,11 +190,13 @@ INSERT INTO member_role(mid,rid) VALUES ('vadmin',5) ;
 INSERT INTO member_role(mid,rid) VALUES ('vadmin',6) ;
 INSERT INTO member_role(mid,rid) VALUES ('vadmin',7) ;
 INSERT INTO member_role(mid,rid) VALUES ('vadmin',8) ;
+INSERT INTO member_role(mid,rid) VALUES ('vadmin',9) ;
 
 INSERT INTO member_role(mid,rid) VALUES ('mldn',5) ;
 INSERT INTO member_role(mid,rid) VALUES ('mldn',6) ;
 INSERT INTO member_role(mid,rid) VALUES ('mldn',7) ;
 INSERT INTO member_role(mid,rid) VALUES ('mldn',8) ;
+INSERT INTO member_role(mid,rid) VALUES ('mldn',9) ;
 
 
 INSERT INTO province (title) VALUES 

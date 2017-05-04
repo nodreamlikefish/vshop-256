@@ -105,6 +105,7 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
 		rids.add(6) ;
 		rids.add(7) ;
 		rids.add(8) ;
+		rids.add(9) ;
 		IMemberDAO memberDAO = Factory.getDAOInstance("member.dao") ;
 		Member result =  memberDAO.findById(vo.getMid()) ;
 		if (result == null) {

@@ -159,7 +159,7 @@ public class ParameterValueUtil {
 		} else if ("long".equals(paramType)
 				|| "java.lang.Long".equals(paramType)) {
 			if (val == null || "".equals(val)) {
-				return 0; // 表示没有传递该参数
+				return 0L; // 表示没有传递该参数
 			} else {
 				return Long.parseLong(val);
 			}

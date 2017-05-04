@@ -69,7 +69,34 @@ public class GoodsActionBack extends AbstractBaseAction {
 			super.print(false);
 		}
 	}
-
+	public String add(Goods vo) {
+		if (super.isRoleAndAction("goods", "goods:add")) {
+			vo.setMid(super.getMid());
+			ActionUploadUtil auu = new ActionUploadUtil("upload/goods");
+			try { 
+				vo.setPhoto(auu.createSingleFileName());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			IGoodsServiceBack goodsServiceBack = Factory
+					.getServiceInstance("goods.service.back");
+			try {
+				if (goodsServiceBack.add(vo)) {
+					super.setUrlAndMsg("goods.add.action", "action.add.success",
+							GOODS_FLAG);
+					auu.saveSingleFile(); // 文件保存
+				} else {
+					super.setUrlAndMsg("goods.add.action", "action.add.failure",
+							GOODS_FLAG);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			super.setUrlAndMsg("index.page", "unaction.msg");
+		}
+		return super.getUrl("forward.back.page");
+	}
 	public String edit(Goods vo) {
 		if (super.isRoleAndAction("goods", "goods:edit")) {
 			vo.setMid(super.getMid());
@@ -172,34 +199,7 @@ public class GoodsActionBack extends AbstractBaseAction {
 		}
 	}
 
-	public String add(Goods vo) {
-		if (super.isRoleAndAction("goods", "goods:add")) {
-			vo.setMid(super.getMid());
-			ActionUploadUtil auu = new ActionUploadUtil("upload/goods");
-			try {
-				vo.setPhoto(auu.createSingleFileName());
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-			IGoodsServiceBack goodsServiceBack = Factory
-					.getServiceInstance("goods.service.back");
-			try {
-				if (goodsServiceBack.add(vo)) {
-					super.setUrlAndMsg("goods.add.action", "action.add.success",
-							GOODS_FLAG);
-					auu.saveSingleFile(); // 文件保存
-				} else {
-					super.setUrlAndMsg("goods.add.action", "action.add.failure",
-							GOODS_FLAG);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			super.setUrlAndMsg("index.page", "unaction.msg");
-		}
-		return super.getUrl("forward.back.page");
-	}
+
 
 	public ModelAndView addPre() {
 		if (super.isRoleAndAction("goods", "goods:add")) {
