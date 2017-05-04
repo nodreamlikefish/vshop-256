@@ -25,6 +25,25 @@ public class OrdersServiceFrontImpl extends AbstractService
 			IOrdersServiceFront {
 	
 	@Override
+	public Map<String, Object> get(String mid, int oid) throws Exception {
+		Map<String, Object> map = new HashMap<String,Object>() ;
+		// 1、根据用户编号和订单编号获取订单信息
+		IOrdersDAO ordersDAO = Factory.getDAOInstance("orders.dao") ;
+		Orders orders = ordersDAO.findByMemberAndId(mid, oid) ;
+		if (orders != null) {	// 已经获取了该订单的信息
+			map.put("orders", orders) ;
+			// 2、应该根据订单信息获取全部的详情信息，但是考虑到随后还需要进行EL控制。
+			IDetailsDAO detailsDAO = Factory.getDAOInstance("details.dao") ;
+			Map<Long,Integer> detailsMap = detailsDAO.findAllByOrders(oid) ;
+			map.put("allDetailss", detailsMap) ;
+			// 3、取得所有的购买的商品信息
+			IGoodsDAO goodsDAO = Factory.getDAOInstance("goods.dao") ;
+			map.put("allGoodss", goodsDAO.findAllByIds(detailsMap.keySet())) ;
+		}
+		return map;
+	}
+	
+	@Override
 	public Map<String, Object> list(String mid, int currentPage, int lineSize)
 			throws Exception {
 		Map<String,Object> map = new HashMap<String,Object>() ;

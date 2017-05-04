@@ -13,6 +13,24 @@ import cn.mldn.vshop.util.action.AbstractBaseAction;
 public class OrdersActionFront extends AbstractBaseAction {
 	private static final String ORDERS_FLAG = "订单" ;
 	
+	public ModelAndView details(int oid) {
+		if (super.isRoleAndAction("orders", "orders:show")) {
+			IOrdersServiceFront ordersService = Factory.getServiceInstance("orders.service.front") ; 
+			ModelAndView mav = new ModelAndView(super.getUrl("orders.details.show.page")) ;
+			try {
+				mav.add(ordersService.get(super.getMid(), oid));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return mav ;
+		}  else {
+			super.setUrlAndMsg("index.page", "unaction.msg");
+			ModelAndView mav = new ModelAndView(
+					super.getUrl("forward.front.page"));
+			return mav;
+		}
+	}
+	
 	public ModelAndView list() {
 		if (super.isRoleAndAction("orders", "orders:list")) {
 			ActionSplitPageUtil aspu = new ActionSplitPageUtil("", "orders.list.action") ;

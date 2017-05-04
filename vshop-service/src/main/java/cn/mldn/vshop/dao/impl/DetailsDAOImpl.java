@@ -1,7 +1,10 @@
 package cn.mldn.vshop.dao.impl;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import cn.mldn.util.dao.abs.AbstractDAO;
@@ -10,6 +13,19 @@ import cn.mldn.vshop.vo.Details;
 
 public class DetailsDAOImpl extends AbstractDAO implements IDetailsDAO {
 
+	@Override
+	public Map<Long, Integer> findAllByOrders(Integer oid) throws SQLException {
+		Map<Long,Integer> map = new HashMap<Long,Integer>() ;
+		String sql = "SELECT gid,amount FROM details WHERE oid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, oid);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			map.put(rs.getLong(1), rs.getInt(2)) ;
+		}
+		return map;
+	}
+	
 	@Override
 	public boolean doCreate(Details vo) throws SQLException {
 		String sql = "INSERT INTO details(oid,gid,amount) VALUES (?,?,?)" ;

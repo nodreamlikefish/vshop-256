@@ -4,6 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/pages/plugins/front/front_header.jsp"/>
 <script type="text/javascript" src="js/front/center/orders/orders_list.js"></script>
+<%!
+	public static final String ORDERS_DETAILS_SHOW_URL = "pages/front/center/orders/OrdersActionFront!details.action"; 
+%>
 <body class="back">
 	<div class="container contentback">
 		<div id="headDiv" class="row">
@@ -40,7 +43,7 @@
 										<td class="text-center">${orders.price}</td>
 										<td class="text-center">${orders.subdate}</td>
 										<td class="text-center"> 
-											<a type="button" class="btn btn-primary btn-xs" href="pages/front/center/orders/orders_details_show.jsp">
+											<a type="button" class="btn btn-primary btn-xs" href="<%=ORDERS_DETAILS_SHOW_URL%>?oid=${orders.oid}">
 												<span class="glyphicon glyphicon-list-alt"></span>&nbsp;查看详情</a>
 										</td>
 									</tr>

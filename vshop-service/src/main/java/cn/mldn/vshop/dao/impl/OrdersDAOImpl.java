@@ -12,6 +12,27 @@ import cn.mldn.vshop.vo.Orders;
 
 public class OrdersDAOImpl extends AbstractDAO implements IOrdersDAO {
 	@Override
+	public Orders findByMemberAndId(String mid, Integer oid)
+			throws SQLException {
+		String sql = "SELECT oid,mid,address,subdate,price,note FROM orders WHERE mid=? AND oid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, mid);
+		super.pstmt.setInt(2, oid);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			Orders vo = new Orders() ;
+			vo.setOid(rs.getInt(1));
+			vo.setMid(rs.getString(2));
+			vo.setAddress(rs.getString(3));
+			vo.setSubdate(rs.getTimestamp(4));
+			vo.setPrice(rs.getDouble(5)); 
+			vo.setNote(rs.getString(6));
+			return vo ;
+		}
+		return null;
+	}
+	
+	@Override
 	public Integer getAllCountByMember(String mid) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM orders WHERE mid=?" ;
 		super.pstmt = super.conn.prepareStatement(sql) ;

@@ -8,6 +8,15 @@ import cn.mldn.vshop.vo.Orders;
 
 public interface IOrdersDAO extends IBaseDAO<Integer, Orders> {
 	/**
+	 * 根据指定的用户名和订单编号查询订单的详细信息
+	 * @param mid 用户名
+	 * @param oid 订单编号
+	 * @return 订单信息
+	 * @throws SQLException SQL
+	 */
+	public Orders findByMemberAndId(String mid,Integer oid) throws SQLException ;
+	
+	/**
 	 * 取得增长后的id数据信息
 	 * @return 增长后的id内容
 	 * @throws SQLException SQL
