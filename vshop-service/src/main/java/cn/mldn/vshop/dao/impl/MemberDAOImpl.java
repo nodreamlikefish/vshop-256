@@ -124,13 +124,10 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 	public List<Member> findAllSplit(Integer currentPage, Integer lineSize)
 			throws SQLException {
 		List<Member> all = new ArrayList<Member>() ;
-		String sql = "SELECT * FROM ( "
-				+ " SELECT mid,name,lastdate,locked,ROWNUM rn "
-				+ " FROM member WHERE ROWNUM<=?) temp"
-				+ " WHERE temp.rn>?" ;
+		String sql = "SELECT mid,name,lastdate,locked,email,phone,regdate FROM member LIMIT ?,?" ;
 		super.pstmt = super.conn.prepareStatement(sql) ;
-		super.pstmt.setInt(1, currentPage * lineSize);
-		super.pstmt.setInt(2, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(1, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(2, lineSize);
 		ResultSet rs = super.pstmt.executeQuery() ;
 		while (rs.next()) {
 			Member vo = new Member() ;
@@ -138,6 +135,9 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 			vo.setName(rs.getString(2));
 			vo.setLastdate(rs.getDate(3));
 			vo.setLocked(rs.getInt(4));
+			vo.setEmail(rs.getString(5));
+			vo.setPhone(rs.getString(6));
+			vo.setRegdate(rs.getTimestamp(7));
 			all.add(vo) ;
 		}
 		return all;
@@ -147,14 +147,13 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 	public List<Member> findAllSplit(Integer currentPage, Integer lineSize,
 			String column, String keyWord) throws SQLException {
 		List<Member> all = new ArrayList<Member>() ;
-		String sql = "SELECT * FROM ( "
-				+ " SELECT mid,name,lastdate,locked,ROWNUM rn "
-				+ " FROM member WHERE " + column + " LIKE ? AND ROWNUM<=?) temp"
-				+ " WHERE temp.rn>?" ;
+		String sql = "SELECT mid,name,lastdate,locked,email,phone,regdate "
+				+ "  FROM member "
+				+ " WHERE " + column + " LIKE ? LIMIT ?,?" ;
 		super.pstmt = super.conn.prepareStatement(sql) ;
 		super.pstmt.setString(1, "%"+keyWord+"%");
-		super.pstmt.setInt(2, currentPage * lineSize);
-		super.pstmt.setInt(3, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(2, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(3, lineSize);
 		ResultSet rs = super.pstmt.executeQuery() ;
 		while (rs.next()) {
 			Member vo = new Member() ;
@@ -162,6 +161,9 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 			vo.setName(rs.getString(2));
 			vo.setLastdate(rs.getDate(3));
 			vo.setLocked(rs.getInt(4));
+			vo.setEmail(rs.getString(5));
+			vo.setPhone(rs.getString(6));
+			vo.setRegdate(rs.getTimestamp(7));
 			all.add(vo) ;
 		}
 		return all;

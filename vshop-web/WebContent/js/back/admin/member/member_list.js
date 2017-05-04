@@ -1,9 +1,9 @@
 $(function(){
 	$("#selectAll").on("click",function(){
-		checkboxSelectAll('user.userid',this.checked) ;
+		checkboxSelectAll('mid',this.checked) ;
 	}) ;
 	$("#lockBtn").on("click",function(){	// 绑定用户锁定操作
-		operateChecked("确定要锁定这些用户吗？","user.userid",'pages/jsp/admin/UserActionBack!lock.action?p=p') ;
+		operateChecked("确定要锁定这些用户吗？","mid",'pages/jsp/admin/UserActionBack!lock.action?p=p') ;
 	}) ;
 	$("a[id*=userBtn-]").each(function(){
 		// 拆分id数据
