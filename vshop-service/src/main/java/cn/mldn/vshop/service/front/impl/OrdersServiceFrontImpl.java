@@ -23,6 +23,16 @@ import cn.mldn.vshop.vo.Orders;
 public class OrdersServiceFrontImpl extends AbstractService
 		implements
 			IOrdersServiceFront {
+	
+	@Override
+	public Map<String, Object> list(String mid, int currentPage, int lineSize)
+			throws Exception {
+		Map<String,Object> map = new HashMap<String,Object>() ;
+		IOrdersDAO ordersDAO = Factory.getDAOInstance("orders.dao") ;
+		map.put("allOrderss", ordersDAO.findAllSplitByMember(mid, currentPage, lineSize)) ;
+		map.put("allRecorders", ordersDAO.getAllCountByMember(mid)) ;
+		return map;
+	}
 
 	@Override
 	public boolean add(String mid, Set<Long> gid, Integer adid,String note)

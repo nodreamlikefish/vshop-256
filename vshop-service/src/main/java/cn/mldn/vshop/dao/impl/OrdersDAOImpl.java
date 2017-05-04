@@ -2,6 +2,7 @@ package cn.mldn.vshop.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -10,6 +11,38 @@ import cn.mldn.vshop.dao.IOrdersDAO;
 import cn.mldn.vshop.vo.Orders;
 
 public class OrdersDAOImpl extends AbstractDAO implements IOrdersDAO {
+	@Override
+	public Integer getAllCountByMember(String mid) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM orders WHERE mid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, mid);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			return rs.getInt(1) ;
+		}
+		return 0 ;
+	}
+	@Override
+	public List<Orders> findAllSplitByMember(String mid,Integer currentPage,Integer lineSize) throws SQLException {
+		List<Orders> all = new ArrayList<Orders>() ;
+		String sql = "SELECT oid,mid,address,subdate,price FROM orders WHERE mid=? LIMIT ?,?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, mid);
+		super.pstmt.setInt(2, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(3, lineSize); ;
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			Orders vo = new Orders() ;
+			vo.setOid(rs.getInt(1));
+			vo.setMid(rs.getString(2));
+			vo.setAddress(rs.getString(3));
+			vo.setSubdate(rs.getTimestamp(4));
+			vo.setPrice(rs.getDouble(5)); 
+			all.add(vo) ;
+		}
+		return all ;
+	}
+	
 	@Override
 	public Integer findCreateId() throws SQLException {
 		String sql = "SELECT LAST_INSERT_ID()" ;
@@ -65,7 +98,6 @@ public class OrdersDAOImpl extends AbstractDAO implements IOrdersDAO {
 	@Override
 	public List<Orders> findAllSplit(Integer currentPage, Integer lineSize)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

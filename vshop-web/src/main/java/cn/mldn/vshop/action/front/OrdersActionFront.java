@@ -3,6 +3,7 @@ package cn.mldn.vshop.action.front;
 import java.util.HashSet;
 import java.util.Set;
 
+import cn.mldn.util.action.ActionSplitPageUtil;
 import cn.mldn.util.factory.Factory;
 import cn.mldn.util.web.ModelAndView;
 import cn.mldn.util.web.ParameterValueUtil;
@@ -11,6 +12,25 @@ import cn.mldn.vshop.util.action.AbstractBaseAction;
 
 public class OrdersActionFront extends AbstractBaseAction {
 	private static final String ORDERS_FLAG = "订单" ;
+	
+	public ModelAndView list() {
+		if (super.isRoleAndAction("orders", "orders:list")) {
+			ActionSplitPageUtil aspu = new ActionSplitPageUtil("", "orders.list.action") ;
+			IOrdersServiceFront ordersService = Factory.getServiceInstance("orders.service.front") ;
+			ModelAndView mav = new ModelAndView(super.getUrl("orders.list.page")) ;
+			try {
+				mav.add(ordersService.list(super.getMid(), aspu.getCurrentPage(), aspu.getLineSize()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return mav ;
+		} else {
+			super.setUrlAndMsg("index.page", "unaction.msg");
+			ModelAndView mav = new ModelAndView(
+					super.getUrl("forward.front.page"));
+			return mav;
+		}
+	}
 	
 	public String create(int adid,String note) {
 		if (super.isRoleAndAction("orders", "orders:add")) {

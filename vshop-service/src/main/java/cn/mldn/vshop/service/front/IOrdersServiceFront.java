@@ -5,6 +5,18 @@ import java.util.Set;
 
 public interface IOrdersServiceFront {
 	/**
+	 * 实现一个用户的所有订单信息列表
+	 * @param mid 用户编号
+	 * @param currentPage 当前页
+	 * @param lineSize 每页长度
+	 * @return 返回的数据有如下内容：<br>
+	 * 1、key = allOrderss、value = 全部订单信息；<br>
+	 * 2、key = allRecorders、value = 订单数量；<br>
+	 * @throws Exception SQL
+	 */
+	public Map<String,Object> list(String mid,int currentPage,int lineSize) throws Exception ;
+	
+	/**
 	 * 进行订单的创建处理，该处理包括如下内容：
 	 * 1、需要根据传入的用户配送地址的id编号取得一个配送地址的详细信息，保存在Orders类；<br>
 	 * 2、需要根据用户传入的购买商品的编号查询出所有的商品数据，因为需要进行价格计算；<br>

@@ -29,22 +29,22 @@
 								<tr>
 									<th class="text-center"><strong>订单编号</strong></th>
 									<th class="text-center"><strong>总价</strong></th>
-									<th class="text-center"><strong>商品数量</strong></th>
 									<th class="text-center"><strong>下单日期</strong></th>
 									<th class="text-center"><strong>操作</strong></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="text-center">1</td>
-									<td class="text-center">719.8</td>
-									<td class="text-center">5</td>
-									<td class="text-center">2017-10-10</td>
-									<td class="text-center"> 
-										<a type="button" class="btn btn-primary btn-xs" href="pages/front/center/orders/orders_details_show.jsp">
-											<span class="glyphicon glyphicon-list-alt"></span>&nbsp;查看详情</a>
-									</td>
-								</tr>
+								<c:forEach items="${allOrderss}" var="orders">
+									<tr>
+										<td class="text-center">${orders.oid}</td>
+										<td class="text-center">${orders.price}</td>
+										<td class="text-center">${orders.subdate}</td>
+										<td class="text-center"> 
+											<a type="button" class="btn btn-primary btn-xs" href="pages/front/center/orders/orders_details_show.jsp">
+												<span class="glyphicon glyphicon-list-alt"></span>&nbsp;查看详情</a>
+										</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						<div id="splitBarDiv" style="float:right">
