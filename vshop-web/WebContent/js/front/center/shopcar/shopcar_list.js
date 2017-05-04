@@ -1,5 +1,17 @@
 function calAllPrice() {
 	allPrice = 0.0 ;
+	$(addBtn).on("click",function() {
+		gid = "" ;
+		$("#gid:checked").each(function(){
+			gid += $(this).val() + "," ;
+		}) ;
+		if (gid == "") {
+			operateAlert(false,"","请选择要购买的商品！") ;
+		} else {
+			window.location = "pages/front/center/orders/OrdersActionFront!createPre.action?gid="+gid ;
+		}
+	}) ;
+	
 	$("span[id^=price-]").each(function(){
 		id = this.id.split("-")[1] ;
 		price = parseFloat($(this).text()) ;
