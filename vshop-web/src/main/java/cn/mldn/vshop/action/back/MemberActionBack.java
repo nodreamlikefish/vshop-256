@@ -1,12 +1,29 @@
 package cn.mldn.vshop.action.back;
 
 import cn.mldn.util.action.ActionSplitPageUtil;
+import cn.mldn.util.enctype.PasswordUtil;
 import cn.mldn.util.factory.Factory;
 import cn.mldn.util.web.ModelAndView;
 import cn.mldn.vshop.service.back.IMemberServiceBack;
 import cn.mldn.vshop.util.action.AbstractBaseAction;
 
 public class MemberActionBack extends AbstractBaseAction {
+	public void editPassword(String mid, String password) {
+		System.out.println(password);
+		if (super.isRoleAndAction("member", "member:edit")) {
+			IMemberServiceBack memberService = Factory
+					.getServiceInstance("member.service.back");
+			try {
+				super.print(memberService.editPassword(mid,
+						PasswordUtil.getPassword(password)));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			super.print(false);
+		}
+	}
+
 	public ModelAndView list() {
 		if (super.isRoleAndAction("member", "member:list")) {
 			ActionSplitPageUtil aspu = new ActionSplitPageUtil(
@@ -18,11 +35,12 @@ public class MemberActionBack extends AbstractBaseAction {
 					super.getUrl("member.list.page"));
 			try {
 				mav.add(memberService.list(aspu.getCurrentPage(),
-						aspu.getLineSize(), aspu.getColumn(), aspu.getKeyWord()));
+						aspu.getLineSize(), aspu.getColumn(),
+						aspu.getKeyWord()));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return mav ;
+			return mav;
 		} else {
 			super.setUrlAndMsg("index.page", "unaction.msg");
 			ModelAndView mav = new ModelAndView(

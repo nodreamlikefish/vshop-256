@@ -4,6 +4,15 @@ import java.util.Map;
 
 public interface IMemberServiceBack {
 	/**
+	 * 进行密码的编辑处理
+	 * @param mid 用户名
+	 * @param password 新密码
+	 * @return 修改成功返回true
+	 * @throws Exception SQL
+	 */
+	public boolean editPassword(String mid,String password) throws Exception ;
+	
+	/**
 	 * 进行全部的用户列表显示
 	 * @param currentPage 当前页
 	 * @param lineSize 每页行

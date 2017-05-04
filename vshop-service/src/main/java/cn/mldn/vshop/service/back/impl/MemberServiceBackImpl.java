@@ -11,7 +11,11 @@ import cn.mldn.vshop.service.back.IMemberServiceBack;
 public class MemberServiceBackImpl extends AbstractService
 		implements
 			IMemberServiceBack {
-
+	@Override
+	public boolean editPassword(String mid, String password) throws Exception {
+		IMemberDAO memberDAO = Factory.getDAOInstance("member.dao");
+		return memberDAO.doUpdatePassword(mid, password);
+	}
 	@Override
 	public Map<String, Object> list(int currentPage, int lineSize,
 			String column, String keyWord) throws Exception {
