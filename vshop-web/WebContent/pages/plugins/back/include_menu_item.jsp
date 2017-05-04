@@ -27,7 +27,7 @@
 				</a>
 					<ul class="treeview-menu">
 						<c:if test="${fn:contains(allActions,'member:list') }">
-							<li><a href="pages/back/admin/member/member_list.jsp"><i class="fa fa-circle-o"></i>
+							<li><a href="pages/back/admin/member/MemberActionBack!list.action"><i class="fa fa-circle-o"></i>
 								用户列表</a></li>
 						</c:if>
 					</ul></li>
@@ -57,7 +57,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<c:if test="${fn:contains(allActions,'orders:list') }">
-						<li><a href="pages/back/admin/orders/orders_list.jsp"><i 
+						<li><a href="pages/back/admin/orders/OrdersActionBack!list.action"><i 
 							class="fa fa-circle-o"></i> 订单列表</a></li>
 					</c:if>
 				</ul></li>

@@ -19,63 +19,49 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-3"><strong>订单编号：</strong></div>
-						<div class="col-md-9 col-md-pull-1">1001</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3"><strong>下单用户：</strong></div>
-						<div class="col-md-9 col-md-pull-1">MLDN</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3"><strong>下单日期：</strong></div>
-						<div class="col-md-9 col-md-pull-1">2017-10-10</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3"><strong>总金额：</strong></div>
-						<div class="col-md-9 col-md-pull-1">520</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3"><strong>购买商品总数：</strong></div>
-						<div class="col-md-9 col-md-pull-1">6</div>
-					</div>
-					<div class="row">
-						<table class="table table-condensed">
-						<thead>
-							<tr>
-								<th class="text-center"><strong>商品名称</strong></th>
-								<th class="text-center"><strong>价格</strong></th>
-								<th class="text-center"><strong>购买数量</strong></th>
-								<th class="text-center"><strong>总额</strong></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="text-center">
-									<a id="showBtn-1" onmouseover="this.style.cursor='hand'">Java开发实战经典</a>
-								</td>
-								<td class="text-center">79.8</td>
-								<td class="text-center">10</td>
-								<td class="text-center">798</td>
-							</tr>
-							<tr>
-								<td class="text-center">
-									<a id="showBtn-1" onmouseover="this.style.cursor='hand'">Java开发实战经典</a>
-								</td>
-								<td class="text-center">79.8</td>
-								<td class="text-center">10</td>
-								<td class="text-center">798</td>
-							</tr>
-							<tr>
-								<td class="text-center">
-									<a id="showBtn-1" onmouseover="this.style.cursor='hand'">Java开发实战经典</a>
-								</td>
-								<td class="text-center">79.8</td>
-								<td class="text-center">10</td>
-								<td class="text-center">798</td>
-							</tr>
-						</tbody>
-					</table>
-					</div>
+							<div class="col-md-3"><strong>订单编号：</strong></div>
+							<div class="col-md-9 col-md-pull-1">${orders.oid}</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3"><strong>下单用户：</strong></div>
+							<div class="col-md-9 col-md-pull-1">${orders.mid}</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3"><strong>下单日期：</strong></div>
+							<div class="col-md-9 col-md-pull-1">${orders.subdate}</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3"><strong>总金额：</strong></div>
+							<div class="col-md-9 col-md-pull-1">${orders.price}</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3"><strong>购买商品总数：</strong></div>
+							<div class="col-md-9 col-md-pull-1">${fn:length(allGoodss) }</div>
+						</div>
+						<div class="row">
+							<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th class="text-center"><strong>商品名称</strong></th>
+									<th class="text-center"><strong>价格</strong></th>
+									<th class="text-center"><strong>购买数量</strong></th>
+									<th class="text-center"><strong>总额</strong></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${allGoodss}" var="goods">
+									<tr>
+										<td class="text-center">
+											<a id="showBtn-${goods.gid}" onmouseover="this.style.cursor='hand'">${goods.title}</a>
+										</td>
+										<td class="text-center">${goods.price}</td>
+										<td class="text-center">${allDetailss[goods.gid]}</td>
+										<td class="text-center">${allDetailss[goods.gid] * goods.price}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						</div>
 				</div>
 				<div class="panel-footer">
 					<jsp:include page="/pages/plugins/include_alert.jsp"/>

@@ -13,6 +13,16 @@ import cn.mldn.vshop.vo.Member;
 
 public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 	@Override
+	public boolean doUpdateLocked(String mid, Integer locked)
+			throws SQLException {
+		String sql = "UPDATE member SET locked=? WHERE mid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, locked);
+		super.pstmt.setString(2, mid);
+		return super.pstmt.executeUpdate() > 0 ;
+	}
+	
+	@Override
 	public boolean doUpdatePassword(String mid, String password)
 			throws SQLException {
 		String sql = "UPDATE member SET password=? WHERE mid=?" ;
@@ -103,11 +113,11 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 		if (rs.next()) {
 			Member vo = new Member() ;
 			vo.setName(rs.getString(1));
-			vo.setLastdate(rs.getDate(2));
+			vo.setLastdate(rs.getTimestamp(2));
 			vo.setLocked(rs.getInt(3));
 			vo.setEmail(rs.getString(4));
 			vo.setPhone(rs.getString(5));
-			vo.setRegdate(rs.getDate(6));
+			vo.setRegdate(rs.getTimestamp(6));
 			vo.setMid(id); 	// 将mid设置到VO对象里面
 			return vo ;
 		}
@@ -124,13 +134,10 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 	public List<Member> findAllSplit(Integer currentPage, Integer lineSize)
 			throws SQLException {
 		List<Member> all = new ArrayList<Member>() ;
-		String sql = "SELECT * FROM ( "
-				+ " SELECT mid,name,lastdate,locked,ROWNUM rn "
-				+ " FROM member WHERE ROWNUM<=?) temp"
-				+ " WHERE temp.rn>?" ;
+		String sql = "SELECT mid,name,lastdate,locked,email,phone,regdate FROM member LIMIT ?,?" ;
 		super.pstmt = super.conn.prepareStatement(sql) ;
-		super.pstmt.setInt(1, currentPage * lineSize);
-		super.pstmt.setInt(2, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(1, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(2, lineSize);
 		ResultSet rs = super.pstmt.executeQuery() ;
 		while (rs.next()) {
 			Member vo = new Member() ;
@@ -138,6 +145,9 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 			vo.setName(rs.getString(2));
 			vo.setLastdate(rs.getDate(3));
 			vo.setLocked(rs.getInt(4));
+			vo.setEmail(rs.getString(5));
+			vo.setPhone(rs.getString(6));
+			vo.setRegdate(rs.getTimestamp(7));
 			all.add(vo) ;
 		}
 		return all;
@@ -147,14 +157,13 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 	public List<Member> findAllSplit(Integer currentPage, Integer lineSize,
 			String column, String keyWord) throws SQLException {
 		List<Member> all = new ArrayList<Member>() ;
-		String sql = "SELECT * FROM ( "
-				+ " SELECT mid,name,lastdate,locked,ROWNUM rn "
-				+ " FROM member WHERE " + column + " LIKE ? AND ROWNUM<=?) temp"
-				+ " WHERE temp.rn>?" ;
+		String sql = "SELECT mid,name,lastdate,locked,email,phone,regdate "
+				+ "  FROM member "
+				+ " WHERE " + column + " LIKE ? LIMIT ?,?" ;
 		super.pstmt = super.conn.prepareStatement(sql) ;
 		super.pstmt.setString(1, "%"+keyWord+"%");
-		super.pstmt.setInt(2, currentPage * lineSize);
-		super.pstmt.setInt(3, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(2, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(3, lineSize);
 		ResultSet rs = super.pstmt.executeQuery() ;
 		while (rs.next()) {
 			Member vo = new Member() ;
@@ -162,6 +171,9 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 			vo.setName(rs.getString(2));
 			vo.setLastdate(rs.getDate(3));
 			vo.setLocked(rs.getInt(4));
+			vo.setEmail(rs.getString(5));
+			vo.setPhone(rs.getString(6));
+			vo.setRegdate(rs.getTimestamp(7));
 			all.add(vo) ;
 		}
 		return all;

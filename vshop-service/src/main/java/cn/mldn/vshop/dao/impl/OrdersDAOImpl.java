@@ -106,7 +106,20 @@ public class OrdersDAOImpl extends AbstractDAO implements IOrdersDAO {
 
 	@Override
 	public Orders findById(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "SELECT oid,mid,address,subdate,price,note FROM orders WHERE oid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, id);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			Orders vo = new Orders() ;
+			vo.setOid(rs.getInt(1));
+			vo.setMid(rs.getString(2));
+			vo.setAddress(rs.getString(3));
+			vo.setSubdate(rs.getTimestamp(4));
+			vo.setPrice(rs.getDouble(5)); 
+			vo.setNote(rs.getString(6));
+			return vo ;
+		}
 		return null;
 	}
 
@@ -119,27 +132,68 @@ public class OrdersDAOImpl extends AbstractDAO implements IOrdersDAO {
 	@Override
 	public List<Orders> findAllSplit(Integer currentPage, Integer lineSize)
 			throws SQLException {
-		return null;
+		List<Orders> all = new ArrayList<Orders>() ;
+		String sql = "SELECT oid,mid,address,subdate,price FROM orders ORDER BY subdate DESC LIMIT ?,?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(2, lineSize); ;
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			Orders vo = new Orders() ;
+			vo.setOid(rs.getInt(1));
+			vo.setMid(rs.getString(2));
+			vo.setAddress(rs.getString(3));
+			vo.setSubdate(rs.getTimestamp(4));
+			vo.setPrice(rs.getDouble(5)); 
+			all.add(vo) ;
+		}
+		return all ;
 	}
 
 	@Override
 	public List<Orders> findAllSplit(Integer currentPage, Integer lineSize,
 			String column, String keyWord) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Orders> all = new ArrayList<Orders>() ;
+		String sql = "SELECT oid,mid,address,subdate,price FROM orders WHERE " + column + " LIKE ?  ORDER BY subdate DESC LIMIT ?,?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, "%"+keyWord+"%");
+		super.pstmt.setInt(2, (currentPage - 1) * lineSize);
+		super.pstmt.setInt(3, lineSize); ;
+		ResultSet rs = super.pstmt.executeQuery() ;
+		while (rs.next()) {
+			Orders vo = new Orders() ;
+			vo.setOid(rs.getInt(1));
+			vo.setMid(rs.getString(2));
+			vo.setAddress(rs.getString(3));
+			vo.setSubdate(rs.getTimestamp(4));
+			vo.setPrice(rs.getDouble(5)); 
+			all.add(vo) ;
+		}
+		return all ;
 	}
 
 	@Override
 	public Integer getAllCount() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT COUNT(*) FROM orders" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			return rs.getInt(1) ;
+		}
+		return 0 ;
 	}
 
 	@Override
 	public Integer getAllCount(String column, String keyWord)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT COUNT(*) FROM orders WHERE " + column + " LIKE ?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setString(1, "%" + keyWord + "%");
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			return rs.getInt(1) ;
+		}
+		return 0 ;
 	}
 
 

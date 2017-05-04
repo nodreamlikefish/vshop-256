@@ -12,29 +12,29 @@
 					<table class="table table-bordered table-hover">
 						<tr>
 							<td style="width:15%"><strong>用户名：</strong></td>
-							<td>MLDN</td>
+							<td id="modal-mid"></td>
 						</tr>
 						<tr>
 							<td style="width:15%"><strong>姓名：</strong></td>
-							<td>魔乐科技</td>
+							<td id="modal-name"></td>
 						</tr>
 						<tr>
 							<td style="width:15%"><strong>联系电话：</strong></td>
-							<td>13689091234</td>
+							<td id="modal-phone"></td>
 						</tr>
 						<tr>
 							<td style="width:15%"><strong>EMAIL：</strong></td>
-							<td>mldnqa@163.com</td>
+							<td id="modal-email"></td>
 						</tr>
 						<tr>
 							<td style="width:15%"><strong>注册日期：</strong></td>
-							<td>2017-10-10</td>
+							<td id="modal-regdate"></td>
 						</tr>
 					</table>
 				</div>
 				<div id="memberAddressInfo">
 					<div class="lead"><strong>联系地址</strong></div>
-					<table class="table table-bordered table-hover">
+					<table class="table table-bordered table-hover" id="addressTable">
 						<thead>
 							<tr>
 								<th class="text-center"><strong>状态</strong></th>
@@ -43,22 +43,6 @@
 								<th class="text-center"><strong>地址</strong></th>
 							</tr>
 							<tbody>
-								<tr>
-									<td class="text-center">
-										<input type="radio" id="flag" name="flag" checked>
-									</td>
-									<td class="text-center">老李</td>
-									<td class="text-center">11031903209</td>
-									<td class="text-center">北京市朝阳区来广营马泉营</td>
-								</tr>
-								<tr>
-									<td class="text-center">
-										<input type="radio" id="flag" name="flag">
-									</td>
-									<td class="text-center">老王</td>
-									<td class="text-center">11031903209</td>
-									<td class="text-center">北京市昌平区北清路</td>
-								</tr>
 							</tbody>
 						</thead>
 					</table>

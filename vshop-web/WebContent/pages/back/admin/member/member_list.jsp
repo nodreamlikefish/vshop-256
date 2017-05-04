@@ -33,30 +33,41 @@
 									<th class="text-center"><strong>电话</strong></th>
 									<th class="text-center"><strong>邮箱</strong></th>
 									<th class="text-center"><strong>注册日期</strong></th>
+									<th class="text-center"><strong>最后一次活动日期</strong></th>
+									<th class="text-center"><strong>状态</strong></th>
 									<th class="text-center"><strong>操作</strong></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="text-center">
-										<input type="checkbox" id="user.userid" name="user.userid" value="zhangsan">
-									</td>
-									<td class="text-center">
-										<a id="userBtn-zhangsan" onmouseover="this.style.cursor='hand'">zhangsan</a>
-									</td>
-									<td class="text-center">张三</td>
-									<td class="text-center">13689091234</td>
-									<td class="text-center">mldnqa@163.com</td>
-									<td class="text-center">2017-10-10</td>
-									<td class="text-center">
-										<a id="editBtn-zhangsan" class="btn btn-xs btn-info" onmouseover="this.style.cursor='hand'">
-													<span class="glyphicon glyphicon-edit"></span>&nbsp;变更密码</a>
-									</td>
-								</tr>
+								<c:forEach items="${allMembers}" var="member">
+									<tr>
+										<td class="text-center">
+											<input type="checkbox" id="mid" name="mid" value="${member.mid}">
+										</td>
+										<td class="text-center">
+											<a id="userBtn-${member.mid}" onmouseover="this.style.cursor='hand'">${member.mid}</a>
+										</td>
+										<td class="text-center">${member.name}</td>
+										<td class="text-center">${member.phone}</td>
+										<td class="text-center">${member.email}</td>
+										<td class="text-center">${member.regdate}</td>
+										<td class="text-center">${member.lastdate}</td>
+										<td class="text-center">
+											<span id="lock-${member.mid}">
+												${member.locked == 1 ? "锁定" : "活跃"}
+											</span>
+										</td>
+										<td class="text-center">
+											<a id="editBtn-${member.mid}" class="btn btn-xs btn-info" onmouseover="this.style.cursor='hand'">
+														<span class="glyphicon glyphicon-edit"></span>&nbsp;变更密码</a>
+										</td>
+									</tr>
+								</c:forEach> 
 							</tbody>
 						</table>
 						<div>
 							<button class="btn btn-danger" id="lockBtn">锁定用户</button>
+							<button class="btn btn-info" id="unlockBtn">解锁用户</button>
 						</div>
 						<div id="splitBarDiv" style="float:right">
 							<jsp:include page="/pages/plugins/split_plugin_page_bar.jsp"/> 

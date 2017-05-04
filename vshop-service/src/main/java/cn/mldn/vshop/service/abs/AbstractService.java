@@ -8,4 +8,7 @@ public abstract class AbstractService {
 		IActionDAO actionDAO = Factory.getDAOInstance("action.dao") ;
 		return actionDAO.findActionByMember(mid, flag) ;
 	}
+	public boolean isEmpty(String column,String keyWord) {
+		return column == null || keyWord == null || "".equals(column) || "".equals(keyWord) ;
+	}
 }

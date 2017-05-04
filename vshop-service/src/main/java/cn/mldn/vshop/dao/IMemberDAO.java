@@ -8,6 +8,15 @@ import cn.mldn.vshop.vo.Member;
 
 public interface IMemberDAO extends IBaseDAO<String, Member> {
 	/**
+	 * 实现用户的锁定控制
+	 * @param mid 要锁定的用户编号
+	 * @param locked 锁定状态
+	 * @return 更新成功返回true
+	 * @throws SQLException SQL
+	 */
+	public boolean doUpdateLocked(String mid,Integer locked) throws SQLException ;
+	
+	/**
 	 * 进行用户的登录密码更新
 	 * @param mid 要更新的用户编号
 	 * @param password 新的密码
