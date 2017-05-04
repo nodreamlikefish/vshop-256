@@ -7,6 +7,25 @@ import cn.mldn.vshop.service.back.IOrdersServiceBack;
 import cn.mldn.vshop.util.action.AbstractBaseAction;
 
 public class OrdersActionBack extends AbstractBaseAction {
+	
+	public ModelAndView show(int oid) {
+		if (super.isRoleAndAction("orders", "orders:show")) {
+			ModelAndView mav = new ModelAndView(super.getUrl("back.orders.details.page")) ;
+			IOrdersServiceBack ordersService = Factory.getServiceInstance("orders.service.back") ;
+			try {
+				mav.add(ordersService.get(oid));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return mav ;
+		}else {
+			super.setUrlAndMsg("index.page", "unaction.msg");
+			ModelAndView mav = new ModelAndView(
+					super.getUrl("forward.back.page"));
+			return mav;
+		}
+	}
+	
 	public ModelAndView list() {
 		if (super.isRoleAndAction("orders", "orders:list")) {
 			ModelAndView mav = new ModelAndView(super.getUrl("back.orders.list.page")) ;

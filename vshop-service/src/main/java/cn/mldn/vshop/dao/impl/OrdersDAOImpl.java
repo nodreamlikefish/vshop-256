@@ -106,7 +106,20 @@ public class OrdersDAOImpl extends AbstractDAO implements IOrdersDAO {
 
 	@Override
 	public Orders findById(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "SELECT oid,mid,address,subdate,price,note FROM orders WHERE oid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, id);
+		ResultSet rs = super.pstmt.executeQuery() ;
+		if (rs.next()) {
+			Orders vo = new Orders() ;
+			vo.setOid(rs.getInt(1));
+			vo.setMid(rs.getString(2));
+			vo.setAddress(rs.getString(3));
+			vo.setSubdate(rs.getTimestamp(4));
+			vo.setPrice(rs.getDouble(5)); 
+			vo.setNote(rs.getString(6));
+			return vo ;
+		}
 		return null;
 	}
 

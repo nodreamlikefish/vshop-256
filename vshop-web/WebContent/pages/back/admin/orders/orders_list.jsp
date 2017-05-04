@@ -37,7 +37,7 @@
 									<td class="text-center">${orders.price}</td>
 									<td class="text-center">${orders.subdate}</td>
 									<td class="text-center">
-										<a type="button" class="btn btn-info btn-xs" href="pages/back/admin/orders/OrdersActionBack!show.action?oid=${orders.oid} }">
+										<a type="button" class="btn btn-info btn-xs" href="pages/back/admin/orders/OrdersActionBack!show.action?oid=${orders.oid}">
 											<span class="glyphicon glyphicon-list-alt"></span>&nbsp;查看详情</a>
 									</td>
 								</tr>
