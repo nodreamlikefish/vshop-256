@@ -5,6 +5,18 @@ import java.util.Set;
 
 public interface IMemberServiceBack {
 	/**
+	 * 进行单个用户详细信息的显示处理操作，本操作要执行如下功能：
+	 * 1、可以根据用户编号查询出一个用户的完整信息；<br>
+	 * 2、可以根据用户编号取得用户的所有配送地址信息。
+	 * @param mid 用户编号
+	 * @return 返回如下的数据内容：<br>
+	 * 1、key = member、value = 单个用户数据信息；<br>
+	 * 2、key = allAddress、value = 某一个用户的地址信息；<br>
+	 * @throws Exception SQL
+	 */
+	public Map<String,Object> getDetails(String mid) throws Exception ;
+	
+	/**
 	 * 进行锁定状态变更
 	 * @param mid 用户编号
 	 * @param locked 状态

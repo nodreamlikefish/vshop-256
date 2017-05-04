@@ -113,11 +113,11 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 		if (rs.next()) {
 			Member vo = new Member() ;
 			vo.setName(rs.getString(1));
-			vo.setLastdate(rs.getDate(2));
+			vo.setLastdate(rs.getTimestamp(2));
 			vo.setLocked(rs.getInt(3));
 			vo.setEmail(rs.getString(4));
 			vo.setPhone(rs.getString(5));
-			vo.setRegdate(rs.getDate(6));
+			vo.setRegdate(rs.getTimestamp(6));
 			vo.setMid(id); 	// 将mid设置到VO对象里面
 			return vo ;
 		}
