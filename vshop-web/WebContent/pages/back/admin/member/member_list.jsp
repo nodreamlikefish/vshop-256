@@ -52,7 +52,11 @@
 										<td class="text-center">${member.email}</td>
 										<td class="text-center">${member.regdate}</td>
 										<td class="text-center">${member.lastdate}</td>
-										<td class="text-center">${member.locked == 1 ? "锁定" : "活跃"}</td>
+										<td class="text-center">
+											<span id="lock-${member.mid}">
+												${member.locked == 1 ? "锁定" : "活跃"}
+											</span>
+										</td>
 										<td class="text-center">
 											<a id="editBtn-${member.mid}" class="btn btn-xs btn-info" onmouseover="this.style.cursor='hand'">
 														<span class="glyphicon glyphicon-edit"></span>&nbsp;变更密码</a>
@@ -63,6 +67,7 @@
 						</table>
 						<div>
 							<button class="btn btn-danger" id="lockBtn">锁定用户</button>
+							<button class="btn btn-info" id="unlockBtn">解锁用户</button>
 						</div>
 						<div id="splitBarDiv" style="float:right">
 							<jsp:include page="/pages/plugins/split_plugin_page_bar.jsp"/> 

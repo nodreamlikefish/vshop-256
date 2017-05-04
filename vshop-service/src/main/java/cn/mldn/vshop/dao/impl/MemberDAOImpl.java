@@ -13,6 +13,16 @@ import cn.mldn.vshop.vo.Member;
 
 public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 	@Override
+	public boolean doUpdateLocked(String mid, Integer locked)
+			throws SQLException {
+		String sql = "UPDATE member SET locked=? WHERE mid=?" ;
+		super.pstmt = super.conn.prepareStatement(sql) ;
+		super.pstmt.setInt(1, locked);
+		super.pstmt.setString(2, mid);
+		return super.pstmt.executeUpdate() > 0 ;
+	}
+	
+	@Override
 	public boolean doUpdatePassword(String mid, String password)
 			throws SQLException {
 		String sql = "UPDATE member SET password=? WHERE mid=?" ;

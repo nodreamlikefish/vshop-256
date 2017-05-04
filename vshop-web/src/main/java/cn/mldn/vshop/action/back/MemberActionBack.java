@@ -1,5 +1,10 @@
 package cn.mldn.vshop.action.back;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.apache.commons.collections.CollectionUtils;
+
 import cn.mldn.util.action.ActionSplitPageUtil;
 import cn.mldn.util.enctype.PasswordUtil;
 import cn.mldn.util.factory.Factory;
@@ -8,6 +13,22 @@ import cn.mldn.vshop.service.back.IMemberServiceBack;
 import cn.mldn.vshop.util.action.AbstractBaseAction;
 
 public class MemberActionBack extends AbstractBaseAction {
+	public void editLocked(String[] mid,int locked) {
+		Set<String> ids = new HashSet<String>() ;
+		CollectionUtils.addAll(ids, mid);	// 直接将接收到的数组转换为Set集合
+		if (super.isRoleAndAction("member", "member:edit")) {
+			IMemberServiceBack memberService = Factory
+					.getServiceInstance("member.service.back");
+			try {
+				super.print(memberService.editLocked(ids, locked));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			super.print(false);
+		}
+	}
+	
 	public void editPassword(String mid, String password) {
 		System.out.println(password);
 		if (super.isRoleAndAction("member", "member:edit")) {

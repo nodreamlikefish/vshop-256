@@ -1,8 +1,18 @@
 package cn.mldn.vshop.service.back;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface IMemberServiceBack {
+	/**
+	 * 进行锁定状态变更
+	 * @param mid 用户编号
+	 * @param locked 状态
+	 * @return 成功返回true
+	 * @throws Exception SQL
+	 */
+	public boolean editLocked(Set<String> mid,int locked) throws Exception ;
+	
 	/**
 	 * 进行密码的编辑处理
 	 * @param mid 用户名

@@ -4,7 +4,42 @@ $(function(){
 		checkboxSelectAll('mid',this.checked) ;
 	}) ;
 	$("#lockBtn").on("click",function(){	// 绑定用户锁定操作
-		operateChecked("确定要锁定这些用户吗？","mid",'pages/jsp/admin/UserActionBack!lock.action?p=p') ;
+		mid = "" ;
+		$("#mid:checked").each(function(){
+			mid += $(this).val() + "," ;
+		}) ;
+		if (mid == "") {
+			operateAlert(false,"","您还未选择要锁定的用户数据！ ") ;
+		} else {
+			$.post("pages/back/admin/member/MemberActionBack!editLocked.action",
+					{"mid":mid,"locked":1},function(data){
+						operateAlert(data.trim() == "true","用户已被锁定！","用户锁定出错！") ;
+						if (data.trim() == "true") {
+							$("#mid:checked").each(function(){
+								$("#lock-" + $(this).val()).text("锁定") ;
+							}) ;
+						}
+					},"text") ;
+		}
+	}) ;
+	$("#unlockBtn").on("click",function(){	// 绑定用户锁定操作
+		mid = "" ;
+		$("#mid:checked").each(function(){
+			mid += $(this).val() + "," ;
+		}) ;
+		if (mid == "") {
+			operateAlert(false,"","您还未选择要解锁的用户数据！ ") ;
+		} else {
+			$.post("pages/back/admin/member/MemberActionBack!editLocked.action",
+					{"mid":mid,"locked":0},function(data){
+						operateAlert(data.trim() == "true","用户已被成功解锁！","用户解锁出错！") ;
+						if (data.trim() == "true") {
+							$("#mid:checked").each(function(){
+								$("#lock-" + $(this).val()).text("活跃") ;
+							}) ;
+						}
+					},"text") ;
+		}
 	}) ;
 	$("a[id*=userBtn-]").each(function(){
 		// 拆分id数据
